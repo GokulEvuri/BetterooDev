@@ -2,7 +2,7 @@
 var CT = require('./modules/country-list');
 var AM = require('./modules/account-manager');
 var EM = require('./modules/email-dispatcher');
-var lib_api = require('./lib/betteroo_api');
+var lib_api = require('./modules/betteroo_api');
 
 module.exports = function(app) {
 
