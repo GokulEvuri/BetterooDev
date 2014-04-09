@@ -59,9 +59,11 @@ function create_poll(question,option1,option2,dynamodb,res){
             "TableName":"polls",
               "Item":{
               "poll_id":{"S": "1"},
+              "total_votes":{"N":0},
+              "total_views":{"N":0},
               "question":{"S":question},
-              "option1":{"S":option1},
-              "option2":{"S":option2},
+              "option1":{"S":option1,"S":image1_ref},
+              "option2":{"S":option2,"S":image2_ref},
               "created":{"N": new Date().getTime().toString()}
               
             }
@@ -105,8 +107,37 @@ function map_distribution(post_id){
   //create send buffer and depending up on country_view
 }
 
+function get_stats(req,res){
+  // Get post id from req
+  var postID = req.query.post_id;
+//See if the option stats are available, if so, add the vote to that list, else add option stat for that option
+  // Get following details related to post_id
+    //Total Votes
+      // In total
+      // For each option
+    //Total Views
+    //Vote Distribution (Same for both options)
+      // All the countries, from where votes are available
+    //Time of votes with 5 minutes resulotion
+    //Time of votes with after showing the poll
+  // Construct JSON with following keys
+  // Send this constructed JSON to using res.sendjson()
+}
+
+function vote(req,res){
+  var postID = req.query.post_id;
+  var vote = req.query.option;
+  var time_taken = req.query.time_taken;
+  // increase total no of votes
+  var location = req.query.location;
+  var local_time = req.query.local_time;
+}
+
+
 
 exports.register_user = register_user; //public function
 exports.is_uname_unieque = is_uname_unieque; //public function
 exports.login = login;
 exports.create_poll = create_poll;
+exports.get_stats = get_stats;
+exports.vote = vote;
