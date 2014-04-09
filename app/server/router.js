@@ -2,6 +2,7 @@
 var CT = require('./modules/country-list');
 var AM = require('./modules/account-manager');
 var EM = require('./modules/email-dispatcher');
+var lib_api = require('./lib/betteroo_api');
 
 module.exports = function(app) {
 
@@ -197,6 +198,15 @@ app.get('/settings', function(req, res) {
 //			res.redirect('/print');	
 //		});
 //	});
+
+	app.get('/get_stats', function(req,res){
+		if(req.session.user== null){
+			res.redirect('/');
+		}
+		else{
+			lib_api.get_stats(req,res);
+		}
+	});
 
 	app.get('/map_distribution', function(req, res) {
 		res.end();
