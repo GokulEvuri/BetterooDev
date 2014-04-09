@@ -194,10 +194,9 @@ app.get('/settings', function(req, res) {
 	});
 
 	app.get('/get_stats_temp', function(req,res){
-			res.json({Option1:{India:120,Sweden:190,Russia:200,USA:82,Spain:79},
+			res.send(JSON.stringfy({Option1:{India:120,Sweden:190,Russia:200,USA:82,Spain:79},
 						Option2:{India:111,Sweden:10,Russia:160,USA:178,Spain:70,Australia:90}
-						});
-			res.end();
+						}));
 	});
 
 //	app.get('/reset', function(req, res) {
