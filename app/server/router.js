@@ -197,7 +197,6 @@ app.get('/settings', function(req, res) {
 			res.send(JSON.stringify({Option1:{India:120,Sweden:190,Russia:200,USA:82,Spain:79},
 						Option2:{India:111,Sweden:10,Russia:160,USA:178,Spain:70,Australia:90}
 						}));
-		res.end();
 	});
 
 //	app.get('/reset', function(req, res) {
