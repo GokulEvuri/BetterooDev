@@ -207,7 +207,7 @@ app.get('/settings', function(req, res) {
 	// if user is not logged-in redirect back to login page //
 	        res.redirect('/');
 	    }   else{
-			res.sendfile('/views/post.html');
+			res.sendfile('./views/post.html');
 	    }
 
 	});
