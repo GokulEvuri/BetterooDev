@@ -189,7 +189,7 @@ function cpdsa(question,option1,option2,dynamodb){
               "option2":{"S":option2,"S":"image2_ref","N":'0'},
               // fill in here with option stats dynamically
               // "option1_stats"
-              "created":{"N": new Date().getTime().toString()}             
+         //     "created":{"N": new Date().getTime().toString()}             
             }
         }
   dynamodb.putItem( poll_var, function(err, result) {
