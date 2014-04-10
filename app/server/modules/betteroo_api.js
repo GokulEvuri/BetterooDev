@@ -95,8 +95,16 @@ function poll_id(){
   else{
     poll_id.count ++;
   }
-//  return  poll_id.count;
+ console.log(poll_id.count);
 }
+
+function test1(){
+  for (var i=0;i<100;i++)
+  { 
+  new poll_id();
+  }
+}
+
 
 
 // to create a new user in database
@@ -168,12 +176,6 @@ var S3 = new AWS.S3();
   create_poll("question","option1","option2",dynamodb);
 }
 
-function test1(){
-  for (var i=0;i<100;i++)
-  { 
-  console.log(new poll_id().count);
-  }
-}
 
 test1();
 
