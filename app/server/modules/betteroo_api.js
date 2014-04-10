@@ -63,12 +63,10 @@ function create_poll(question,option1,option2,dynamodb){
               "total_votes":{"N":'0'},
               "total_views":{"N":'0'},
               "question":{"S":question},
-              "option1":{"S":option1,"S":"image1_ref"},
-              "option2":{"S":option2,"S":"image2_ref"},
+              "option1":{"S":option1,"S":"image1_ref","N":'0'},
+              "option2":{"S":option2,"S":"image2_ref","N":'0'},
               // fill in here with option stats dynamically
               // "option1_stats"
-              "option1_stats":{"S":"ds"},
-              "option2_stats":{"S":"ds"},
               "created":{"N": new Date().getTime().toString()}
               
             }
@@ -136,6 +134,28 @@ function vote(req,res){
   // increase total no of votes
   var location = req.query.location;
   var local_time = req.query.local_time;
+
+  var vote_var =  {
+            "TableName":"votes",
+              "Item":{
+              "option_id":{"S": "14a"},
+              "total_votes":{"N":'0'},
+              "question":{"S":question},
+              // fill in here with option stats dynamically
+              // "option1_stats"
+              "created":{"N": new Date().getTime().toString()}
+              
+            }
+        }
+
+  dynamodb.putItem( poll_var, function(err, result) {
+    if(err) console.log(err,err.stack);
+      else  
+      console.log(result);
+  }); 
+//  res.write("poll created");
+//res.end();
+
 }
 
 //Testing functions
@@ -148,7 +168,14 @@ var S3 = new AWS.S3();
   create_poll("question","option1","option2",dynamodb);
 }
 
-test();
+function test1(){
+  for (var i=0;i<100;i++)
+  { 
+    console.log(new poll_id());
+  }
+}
+
+test1();
 
 exports.register_user = register_user; //public function
 exports.is_uname_unieque = is_uname_unieque; //public function
