@@ -48,13 +48,14 @@ function handle_login(err,data){
 		var login_bool=(data.Item.password.S==pass_hash)?"true":"false";
 			console.log("22 "+login_bool);
 			res.json(login_bool);
-			res.end();		
+			//res.end();		
 }
 
 };
 
-
-function create_poll(question,option1,option2,dynamodb,res){
+// For MVP, later handle options as an array
+//function create_poll(question,option1,option2,dynamodb,res){
+function create_poll(question,option1,option2,dynamodb){
 	var poll_var =  {
             "TableName":"polls",
               "Item":{
@@ -64,6 +65,10 @@ function create_poll(question,option1,option2,dynamodb,res){
               "question":{"S":question},
               "option1":{"S":option1,"S":image1_ref},
               "option2":{"S":option2,"S":image2_ref},
+              // fill in here with option stats dynamically
+              // "option1_stats"
+              "option1_stats":{},
+              "option2_stats":{},
               "created":{"N": new Date().getTime().toString()}
               
             }
@@ -75,7 +80,7 @@ function create_poll(question,option1,option2,dynamodb,res){
       console.log(result);
   });	
 	res.write("poll created");
-	res.end();
+//res.end();
 };
 
 
@@ -133,7 +138,17 @@ function vote(req,res){
   var local_time = req.query.local_time;
 }
 
+//Testing functions
+var AWS = require('aws-sdk');
+AWS.config.loadFromPath('./config.json');
+function test(){
+// Creating object for dynamoDB
+var dynamodb = new AWS.DynamoDB();
+var S3 = new AWS.S3();
+  create_poll("question","option1","option2",dynamodb);
+}
 
+test();
 
 exports.register_user = register_user; //public function
 exports.is_uname_unieque = is_uname_unieque; //public function
