@@ -1,6 +1,6 @@
 //**** Variables ****//
 
-var poll_id_gen = '0';
+var poll_id_gen = 0;
 
 //**** Abstract Functions ****//
 
@@ -62,7 +62,7 @@ function create_poll(question,option1,option2,dynamodb){
 	var poll_var =  {
             "TableName":"polls",
               "Item":{
-              "poll_id":{"N": poll_id_gen},
+              "poll_id":{"N": poll_id_gen.toString()},
               "total_votes":{"N":'0'},
               "total_views":{"N":'0'},
               "question":{"S":question},
@@ -173,7 +173,7 @@ var S3 = new AWS.S3();
 }
 
 
-test1();
+test();
 
 exports.register_user = register_user; //public function
 //exports.is_uname_unieque = is_uname_unieque; //public function
