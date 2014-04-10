@@ -104,7 +104,7 @@ var polldsds = 0;
 function test1(){
   for (var i=0;i<100;i++)
   { 
-    polldsds = polldsds++;
+    polldsds = polldsds+1;
   console.log(polldsds);
   }
 }
