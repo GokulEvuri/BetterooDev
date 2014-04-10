@@ -96,8 +96,8 @@ function upload_image(req,s3){
 function test1(){
   for (var i=0;i<100;i++)
   { 
-    polldsds = polldsds+1;
-  console.log(polldsds);
+    poll_id_gen = poll_id_gen+1;
+  console.log(poll_id_gen);
   }
 }
 
