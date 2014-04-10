@@ -95,7 +95,7 @@ function poll_id(){
   else{
     poll_id.count ++;
   }
-  console.log(poll_id.count);
+  return  poll_id.count;
 }
 
 
