@@ -89,6 +89,7 @@ function upload_image(req,s3){
 //**** LOW-LEVEL FUNCTIONS ****//
 
 function poll_id(){
+  var returnObject = {};
   if(poll_id.count == undefined){
     poll_id.count = 1;
   }
