@@ -60,8 +60,8 @@ function create_poll(question,option1,option2,dynamodb){
             "TableName":"polls",
               "Item":{
               "poll_id":{"S": "14"},
-              "total_votes":{"N":0},
-              "total_views":{"N":0},
+              "total_votes":{"N":'0'},
+              "total_views":{"N":'0'},
               "question":{"S":question},
               "option1":{"S":option1,"S":"image1_ref"},
               "option2":{"S":option2,"S":"image2_ref"},
