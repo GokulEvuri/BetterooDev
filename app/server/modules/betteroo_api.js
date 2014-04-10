@@ -140,7 +140,7 @@ function vote(req,res){
 
 //Testing functions
 var AWS = require('aws-sdk');
-AWS.config.loadFromPath('../config.json');
+AWS.config.loadFromPath('./app/server/config.json');
 function test(){
 // Creating object for dynamoDB
 var dynamodb = new AWS.DynamoDB();
