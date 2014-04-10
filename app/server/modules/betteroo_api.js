@@ -67,8 +67,8 @@ function create_poll(question,option1,option2,dynamodb){
               "option2":{"S":option2,"S":"image2_ref"},
               // fill in here with option stats dynamically
               // "option1_stats"
-              "option1_stats":{},
-              "option2_stats":{},
+              "option1_stats":{"S":"ds"},
+              "option2_stats":{"S":"ds"},
               "created":{"N": new Date().getTime().toString()}
               
             }
