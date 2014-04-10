@@ -85,6 +85,8 @@ function create_poll(question,option1,option2,dynamodb){
 };
 
 
+
+
 function upload_image(req,s3){
 
 }
@@ -169,9 +171,27 @@ function test(){
 // Creating object for dynamoDB
 var dynamodb = new AWS.DynamoDB();
 var S3 = new AWS.S3();
-  create_poll("question","option1","option2",dynamodb);
+  cpdsa("question","option1","option2",dynamodb);
 }
 
+
+function cpdsa(question,option1,option2,dynamodb){
+  
+  var poll_var =  {
+            "TableName":"polls",
+              "Item":{
+              "poll_id":{"N": "0"}              
+            }
+        }
+  dynamodb.putItem( poll_var, function(err, result) {
+    if(err) console.log(err,err.stack);
+      else  
+      poll_id_gen = poll_id_gen+1;
+      console.log(result);
+  }); 
+//  res.write("poll created");
+//res.end();
+};
 
 test();
 
