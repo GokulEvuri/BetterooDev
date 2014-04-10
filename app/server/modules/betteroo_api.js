@@ -181,7 +181,7 @@ function cpdsa(question,option1,option2,dynamodb){
   var poll_var =  {
             "TableName":"polls",
               "Item":{
-              "poll_id":{"N": poll_id_gen+''},
+              "poll_id":{"N": poll_id_gen+1+''},
               "total_votes":{"N":'0'},
               "total_views":{"N":'0'},
               "question":{"S":question},
