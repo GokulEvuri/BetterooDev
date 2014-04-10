@@ -148,7 +148,7 @@ var S3 = new AWS.S3();
   create_poll("question","option1","option2",dynamodb);
 }
 
-//test();
+test();
 
 exports.register_user = register_user; //public function
 exports.is_uname_unieque = is_uname_unieque; //public function
