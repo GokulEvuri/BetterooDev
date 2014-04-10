@@ -95,13 +95,13 @@ function poll_id(){
   else{
     poll_id.count ++;
   }
- console.log(poll_id.count);
+ return returnObject["poll_id"] = poll_id.count;
 }
 
 function test1(){
   for (var i=0;i<100;i++)
   { 
-  new poll_id();
+  console.log(new poll_id().poll_id);
   }
 }
 
