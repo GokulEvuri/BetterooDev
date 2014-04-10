@@ -66,8 +66,8 @@ function create_poll(question,option1,option2,dynamodb){
               "total_votes":{"N":'0'},
               "total_views":{"N":'0'},
               "question":{"S":question},
-              "option1":{"SS"[option1,"image1_ref",'0']},
-              "option2":{"SS"[option2,"image2_ref",'0']},
+              "option1":{"SS":[option1,"image1_ref",'0']},
+              "option2":{"SS":[option2,"image2_ref",'0']},
               // fill in here with option stats dynamically
               // "option1_stats"
               "created":{"N": new Date().getTime().toString()}
