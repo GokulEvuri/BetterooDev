@@ -176,7 +176,7 @@ var S3 = new AWS.S3();
 test();
 
 exports.register_user = register_user; //public function
-exports.is_uname_unieque = is_uname_unieque; //public function
+//exports.is_uname_unieque = is_uname_unieque; //public function
 exports.login = login;
 exports.create_poll = create_poll;
 exports.get_stats = get_stats;
