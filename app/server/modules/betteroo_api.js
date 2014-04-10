@@ -186,7 +186,7 @@ var S3 = new AWS.S3();
 
 
 function print(err,data){
-  console.log(data);
+  console.log(data.Item.option1.SS);
 }
 
 function cpdsa(question,option1,option2,dynamodb){
