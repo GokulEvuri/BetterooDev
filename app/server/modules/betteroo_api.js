@@ -59,7 +59,7 @@ function create_poll(question,option1,option2,dynamodb){
 	var poll_var =  {
             "TableName":"polls",
               "Item":{
-              "poll_id":{"S": "1"},
+              "poll_id":{"S": "14"},
               "total_votes":{"N":0},
               "total_views":{"N":0},
               "question":{"S":question},
@@ -79,7 +79,7 @@ function create_poll(question,option1,option2,dynamodb){
       else  
       console.log(result);
   });	
-	res.write("poll created");
+//	res.write("poll created");
 //res.end();
 };
 
