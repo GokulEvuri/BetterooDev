@@ -173,8 +173,21 @@ function test(){
 var dynamodb = new AWS.DynamoDB();
 var S3 = new AWS.S3();
   cpdsa("Who you know?","Osama","Obama",dynamodb);
+  var item = {
+    "Key": {
+      "poll_id": {"N":'0'}
+    },
+    "TableName": "polls",
+    "AttributesToGet":[ "option1"
+    ]
+  }
+  dynamodb.getItem(item,print);
 }
 
+
+function print(err,data){
+  console.log(data);
+}
 
 function cpdsa(question,option1,option2,dynamodb){
   
