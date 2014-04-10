@@ -185,8 +185,8 @@ function cpdsa(question,option1,option2,dynamodb){
               "total_votes":{"N":'0'},
               "total_views":{"N":'0'},
               "question":{"S":question},
-         //     "option1":{"S":option1,"S":"image1_ref","N":'0'},
-         //     "option2":{"S":option2,"S":"image2_ref","N":'0'},
+              "option1":{"S":option1,"S":"image1_ref"},
+              "option2":{"S":option2,"S":"image2_ref"},
               // fill in here with option stats dynamically
               // "option1_stats"
               "created":{"N": new Date().getTime().toString()}             
