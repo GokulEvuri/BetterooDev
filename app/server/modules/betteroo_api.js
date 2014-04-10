@@ -180,7 +180,7 @@ function cpdsa(question,option1,option2,dynamodb){
   var poll_var =  {
             "TableName":"polls",
               "Item":{
-              "poll_id":{"N": "0"}              
+              "poll_id":{"N": poll_id_gen+''}              
             }
         }
   dynamodb.putItem( poll_var, function(err, result) {
