@@ -171,7 +171,7 @@ var S3 = new AWS.S3();
 function test1(){
   for (var i=0;i<100;i++)
   { 
-    new poll_id();
+  console.log(new poll_id());
   }
 }
 
