@@ -1,3 +1,7 @@
+//**** Variables ****//
+
+var poll_id_gen = 0;
+
 //**** Abstract Functions ****//
 
 // Before using this dunction use functions to check email and username are unieque.
@@ -22,9 +26,7 @@ function register_user(username,email,f_name,l_name,pass_hash,dynamodb){
   });
 };
 
-function is_uname_unieque(username){
-	
-};
+//function is_uname_unieque(username){};
 
 //login
 function login(username, pass_hash, dynamodb,res){
@@ -54,12 +56,13 @@ function handle_login(err,data){
 };
 
 // For MVP, later handle options as an array
-//function create_poll(question,option1,option2,dynamodb,res){
+// Function create_poll(question,option1,option2,dynamodb,res){
 function create_poll(question,option1,option2,dynamodb){
+  
 	var poll_var =  {
             "TableName":"polls",
               "Item":{
-              "poll_id":{"S": "14"},
+              "poll_id":{"N": poll_id_gen},
               "total_votes":{"N":'0'},
               "total_views":{"N":'0'},
               "question":{"S":question},
@@ -71,10 +74,10 @@ function create_poll(question,option1,option2,dynamodb){
               
             }
         }
-
   dynamodb.putItem( poll_var, function(err, result) {
     if(err) console.log(err,err.stack);
       else  
+      poll_id_gen = poll_id_gen+1;
       console.log(result);
   });	
 //	res.write("poll created");
@@ -88,18 +91,7 @@ function upload_image(req,s3){
 
 //**** LOW-LEVEL FUNCTIONS ****//
 
-function poll_id(){
-  var returnObject = {};
-  if(poll_id.count == undefined){
-    poll_id.count = 1;
-  }
-  else{
-    poll_id.count ++;
-  }
- return returnObject["poll_id"] = poll_id.count;
-}
 
-var polldsds = 0;
 
 function test1(){
   for (var i=0;i<100;i++)
@@ -181,7 +173,7 @@ var S3 = new AWS.S3();
 }
 
 
-test1();
+test();
 
 exports.register_user = register_user; //public function
 exports.is_uname_unieque = is_uname_unieque; //public function
