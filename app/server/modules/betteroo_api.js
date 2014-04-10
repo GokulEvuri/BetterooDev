@@ -198,7 +198,7 @@ function cpdsa(question,option1,option2,dynamodb){
               "total_votes":{"N":'0'},
               "total_views":{"N":'0'},
               "question":{"S":question},
-              "option1":{"SS":["S":option1,"S":"image1_ref","S":"9"]},
+              "option1":{"SS":[option1,"image1_ref","9"]},
               "option2":{"S":option2,"S":"image2_ref","S":"8"},
               // fill in here with option stats dynamically
               // "option1_stats"
