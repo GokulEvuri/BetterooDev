@@ -1,6 +1,7 @@
 //**** Variables ****//
 
 var poll_id_gen = 0;
+var vote_id_gen = 0;
 
 //**** Abstract Functions ****//
 
@@ -62,18 +63,19 @@ function create_poll(question,option1,option2,dynamodb){
 	var poll_var =  {
             "TableName":"polls",
               "Item":{
-              "poll_id":{"N": "0"},
+              "poll_id":{"N": poll_id_gen+""},
               "total_votes":{"N":'0'},
               "total_views":{"N":'0'},
               "question":{"S":question},
               // Option Discription, image reference(Key) from S3,No.Of votes
-              "option1":{"SS":[option1,"image1_ref",'0'],"SS":["i"]},
-              "option2":{"SS":[option2,"image2_ref",'0'],"SS":["i"]},
+              "option1":{"SS":[option1,image1_ref,'0']},
+              "option2":{"SS":[option2,image2_ref,'0']},
               //Vote id's from vote id  
               "option1VID":{"SS":["0"]},
               "option2VID":{"SS":["0"]},
               // fill in here with option stats dynamically
               // "option1_stats"
+              "created_by":{"S":user_id},
               "created":{"N": new Date().getTime().toString()}
               
             }
@@ -88,6 +90,38 @@ function create_poll(question,option1,option2,dynamodb){
 //res.end();
 };
 
+function vote(req,res){
+  var postID = req.query.post_id;
+  var vote = req.query.option;
+  var time_taken = req.query.time_taken;
+  // increase total no of votes
+  var location = req.query.location;
+  var local_time = req.query.local_time;
+  var voter_id = req.query.user_id;
+
+
+  var vote_var =  {
+            "TableName":"votes",
+              "Item":{
+              "vote_id":{"N": vote_id_gen+""},
+              // fill in here with option stats dynamically
+              // "option1_stats"
+              "votedOn":{"N": new Date().getTime().toString()},
+              "time_taken":{"N":time_taken+""},
+              "location":{"S":location},
+              "local_time":{"N":local_time+""},
+              "voter":{"S":voter_id}
+            }
+        }
+
+  dynamodb.putItem( poll_var, function(err, result) {
+    if(err) console.log(err,err.stack);
+      else  
+      console.log(result);
+  }); 
+//  res.write("poll created");
+//res.end();
+}
 
 
 
@@ -137,37 +171,6 @@ function get_stats(req,res){
   // Send this constructed JSON to using res.sendjson()
 }
 
-function vote(req,res){
-  var postID = req.query.post_id;
-  var vote = req.query.option;
-  var time_taken = req.query.time_taken;
-  // increase total no of votes
-  var location = req.query.location;
-  var local_time = req.query.local_time;
-
-  var vote_var =  {
-            "TableName":"votes",
-              "Item":{
-              "option_id":{"S": "14a"},
-              "total_votes":{"N":'0'},
-              "question":{"S":question},
-
-              // fill in here with option stats dynamically
-              // "option1_stats"
-              "created":{"N": new Date().getTime().toString()}
-              
-            }
-        }
-
-  dynamodb.putItem( poll_var, function(err, result) {
-    if(err) console.log(err,err.stack);
-      else  
-      console.log(result);
-  }); 
-//  res.write("poll created");
-//res.end();
-
-}
 
 //Testing functions
 var AWS = require('aws-sdk');
