@@ -90,6 +90,8 @@ function create_poll(question,option1,option2,dynamodb){
 //res.end();
 };
 
+
+
 function vote(req,res){
   var postID = req.query.post_id;
   var vote = req.query.option;
@@ -104,8 +106,6 @@ function vote(req,res){
             "TableName":"votes",
               "Item":{
               "vote_id":{"N": vote_id_gen+""},
-              // fill in here with option stats dynamically
-              // "option1_stats"
               "votedOn":{"N": new Date().getTime().toString()},
               "time_taken":{"N":time_taken+""},
               "location":{"S":location},
@@ -113,14 +113,13 @@ function vote(req,res){
               "voter":{"S":voter_id}
             }
         }
-
   dynamodb.putItem( poll_var, function(err, result) {
     if(err) console.log(err,err.stack);
       else  
       console.log(result);
-  }); 
-//  res.write("poll created");
-//res.end();
+  });
+// in res write no of votes from  both options as json, so that FE can display both numbers on images
+// res.write();
 }
 
 
