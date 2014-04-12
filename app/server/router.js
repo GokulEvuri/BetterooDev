@@ -215,12 +215,25 @@ app.get('/settings', function(req, res) {
 	});
 
 
+
+
 	app.get('/post', function(req, res) {
 		if (req.session.user == null){
 	// if user is not logged-in redirect back to login page //
 	        res.redirect('/');
 	    }   else{
 			res.sendfile("./app/server/views/post.html");
+	    }
+
+	});
+
+
+	app.get('/create_poll', function(req, res) {
+		if (req.session.user == null){
+	// if user is not logged-in redirect back to login page //
+	        res.redirect('/');
+	    }   else{
+			lib_api.create_poll();
 	    }
 
 	});
