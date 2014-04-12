@@ -98,16 +98,11 @@ function create_poll(question,option1,option2,image1_ref,image2_ref,dynamodb,res
 
 
 
-function vote(req,res){
-  var postID = req.query.post_id;
-  var vote = req.query.option;
-  var time_taken = req.query.time_taken;
-  // increase total no of votes
-  var location = req.query.location;
-  var local_time = req.query.local_time;
-  var voter_id = req.query.user_id;
-
-
+//function vote(req,res){
+function vote(postID,vote,time_taken,
+          location,local_time,voter_id,
+          dynamodb,res){
+  // increase total no of votes in option
   var vote_var =  {
             "TableName":"votes",
               "Item":{
@@ -119,7 +114,7 @@ function vote(req,res){
               "voter":{"S":voter_id}
             }
         }
-  dynamodb.putItem( poll_var, function(err, result) {
+  dynamodb.putItem(poll_var, function(err, result) {
     if(err) console.log(err,err.stack);
       else  
       console.log(result);
@@ -229,9 +224,9 @@ function cpdsa(question,option1,option2,dynamodb){
 
 test();
 
-exports.register_user = register_user; //public function
+//exports.register_user = register_user; //public function
 //exports.is_uname_unieque = is_uname_unieque; //public function
-exports.login = login;
+//exports.login = login;
 exports.create_poll = create_poll;
 exports.get_stats = get_stats;
 exports.vote = vote;

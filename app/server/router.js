@@ -3,6 +3,11 @@ var CT = require('./modules/country-list');
 var AM = require('./modules/account-manager');
 var EM = require('./modules/email-dispatcher');
 var lib_api = require('./modules/betteroo_api');
+var AWS = require('aws-sdk');
+
+AWS.config.loadFromPath('./config.json');
+var dynamodb = new AWS.DynamoDB();
+var S3 = new AWS.S3();
 
 module.exports = function(app) {
 
@@ -227,15 +232,37 @@ app.get('/settings', function(req, res) {
 
 	});
 
+	// To serve create_poll page
+	app.get('/create_poll', function(req, res) {
+		if (req.session.user == null){
+	// if user is not logged-in redirect back to login page //
+	        res.redirect('/');
+	    }   else{
+			res.sendfile("./app/server/views/create_poll.html");
+	    }
 
+	});
+
+	// To serve the content "Endpoint create poll"
 	app.post('/create_poll', function(req, res) {
 		if (req.session.user == null){
 	// if user is not logged-in redirect back to login page //
 	        res.redirect('/');
 	    }   else{
-			lib_api.create_poll(req.body.question,req.body.Option1,req.body.Option2,req.body.image1_ref,req.body.image2_ref,dynamodb,res);
+			lib_api.create_poll(req.body.question,
+						req.body.Option1,req.body.Option2,
+						req.body.image1_ref,req.body.image2_ref,
+						dynamodb,res);
 	    }
 
+	});
+
+	// To vote "Endpoint vote"
+	app.post('/vote', function(req, res) {
+		lib_api.vote(req.body.post_id,req.body.option,req.body.time_taken,
+					req.body.location,req.body.local_time,
+					req.body.user_id,
+					dynamodb,res);
 	});
 	
 	app.get('*', function(req, res) { res.render('404', { title: 'Page Not Found'}); });
