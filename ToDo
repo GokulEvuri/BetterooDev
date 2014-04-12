@@ -1,0 +1,11 @@
+For each call generate update view counts
+Change vote functionality
+
+
+Security
+
+Create a new group for client side file upload in aws
+and give access to s3
+
+Restarting Server
+ID generators need to be loaded with new numbers --- "Smart" Solution needed %% think about saving global variables in databse
