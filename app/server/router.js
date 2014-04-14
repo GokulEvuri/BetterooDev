@@ -210,6 +210,8 @@ app.get('/settings', function(req, res) {
 //		});
 //	});
 
+
+	// End point for statistic values from server
 	app.get('/get_stats', function(req,res){
 		if(req.session.user== null){
 			res.redirect('/');
