@@ -82,8 +82,8 @@ function create_poll(question,option1,option2,image1_ref,image2_ref,dynamodb,res
               "created":{"N": new Date().getTime().toString()}
               
             }
-        }
-  dynamodb.putItem( poll_var, onput);	
+        };
+  dynamodb.putItem(poll_var, onput);	
   function onput(err, result) {
       if(err) {
           res.write("failed");
@@ -94,7 +94,7 @@ function create_poll(question,option1,option2,image1_ref,image2_ref,dynamodb,res
        res.write("ok");
        //console.log(result);
      }
-    }
+    };
 //	res.write("poll created");
 //res.end();
 };
