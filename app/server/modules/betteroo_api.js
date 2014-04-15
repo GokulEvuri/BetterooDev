@@ -309,7 +309,7 @@ function cpdsa(question,option1,option2,dynamodb){
 //res.end();
 };
 
-test();
+//test();
 
 //exports.register_user = register_user; //public function
 //exports.is_uname_unieque = is_uname_unieque; //public function
