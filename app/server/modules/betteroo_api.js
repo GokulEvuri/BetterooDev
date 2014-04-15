@@ -107,7 +107,7 @@ function vote(postID,vote,time_taken,
           dynamodb,res){
 //See if the option stats are available, if so, add the vote to that list, else add option stat for that option
   // increase total no of votes in option
-  var vote_id = vote_id_gen+"",
+  var vote_id = vote_id_gen+"";
   var vote_var =  {
             "TableName":"votes",
               "Item":{
@@ -119,7 +119,7 @@ function vote(postID,vote,time_taken,
               "local_time":{"N":local_time+""},
               "voter":{"S":voter_id}
             }
-        }
+        };
   dynamodb.putItem(poll_var, handle_vote);
 
 function handle_aftervote(err, result) {
@@ -233,6 +233,8 @@ function handle_postDataStats(err,data){
 
 //**** LOW-LEVEL FUNCTIONS ****//
 
+
+//**** TESTING FUNCTIONS ****//
 function test1(){
   for (var i=0;i<100;i++)
   { 
@@ -249,10 +251,10 @@ function test1(){
 //};
 
 // Split in to country view, city view, neighbour hood view.
-function map_distribution(post_id){
+//function map_distribution(post_id){
   //Get post with that id from database
   //create send buffer and depending up on country_view
-}
+//}
 
 
 
