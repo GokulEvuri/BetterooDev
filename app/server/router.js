@@ -247,15 +247,15 @@ app.get('/settings', function(req, res) {
 
 	// To serve the content "Endpoint create poll"
 	app.post('/create_poll', function(req, res) {
-		if (req.session.user == null){
+		//if (req.session.user == null){
 	// if user is not logged-in redirect back to login page //
-	        res.redirect('/');
-	    }   else{
+	    //    res.redirect('/');
+	    //}   else{
 			lib_api.create_poll(req.body.question,
 						req.body.Option1,req.body.Option2,
 						req.body.image1_ref,req.body.image2_ref,
 						dynamodb,res);
-	    }
+	    //}
 
 	});
 
