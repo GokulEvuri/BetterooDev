@@ -137,50 +137,50 @@ function handle_aftervote(err, result) {
 // res.write();
 }
 
-function handle_vote(postID,vote,vote_id,res){
+//function handle_vote(postID,vote,vote_id,res){
   
 
-  var params = {
-        "TableName": "polls",
-        "Key": { 
-          "poll_id": {postID}
-        },
-        "AttributeUpdates": {
-          "total_votes": {
-            "Action": "ADD",
-            "Value": {
-              "N": '1'            // Dynamo incriments 1 to existing value
-            }
-          },
+//  var params = {
+//        "TableName": "polls",
+//        "Key": { 
+ //         "poll_id": {postID}
+  //      },
+//        "AttributeUpdates": {
+//          "total_votes": {
+//            "Action": "ADD",
+//            "Value": {
+//              "N": '1'            // Dynamo incriments 1 to existing value
+//            }
+//          },
 
-          "option"+vote+"VC":{
-            "Action":"ADD",
-            "Value":{
-              "N":"1"
-            }     
-          },
-          "option"+vote+"VID":{
-            "Action":"ADD",
-            "Value":{
-              "S":vote_id
-            }
-          }
-        },
-      };
+//          "option"+vote+"VC":{
+//            "Action":"ADD",
+//            "Value":{
+//              "N":"1"
+//            }     
+//          },
+//          "option"+vote+"VID":{
+//            "Action":"ADD",
+//            "Value":{
+//              "S":vote_id
+//            }
+//          }
+//        },
+//      };
  
-  dynamodb.updateItem(params, function(err, data) {
-  if (err) {console.log(err, err.stack); }
-  else     {
+//  dynamodb.updateItem(params, function(err, data) {
+//  if (err) {console.log(err, err.stack); }
+//  else     {
     //console.log(data);
-    res.write("ok");           
-  }
-}
-}
+//    res.write("ok");           
+//  }
+//}
+//}
 
 
-function get_stats(req,res){
+//function get_stats(req,res){
   // Get post id from req
-  var postID = req.query.post_id;
+//  var postID = req.query.post_id;
 
   // Get following details related to post_id
     //Total Votes
@@ -193,39 +193,39 @@ function get_stats(req,res){
     //Time of votes with after showing the poll
   // Construct JSON with following keys
   // Send this constructed JSON to using res.sendjson()
-  var item = {
-    "Key": {
-      "poll_id": {"N":postID}
-    },
-    "TableName": "polls",
-    "AttributesToGet":[ "total_votes","total_views","option1VID","option2VID"
-    ]
-  }
+ // var item = {
+ //   "Key": {
+ //     "poll_id": {"N":postID}
+ //   },
+ //   "TableName": "polls",
+ //   "AttributesToGet":[ "total_votes","total_views","option1VID","option2VID"
+ //   ]
+ // }
 
-  dynamodb.getItem(item,handle_postDataStats);
+ // dynamodb.getItem(item,handle_postDataStats);
 
 
-function handle_postDataStats(err,data){
-    if(err)
-      console.log(err,err.stack);
-    else
-      console.log("ok");
-    var total_views = data.Item.total_views.N;
-    var total_votes = data.Item.total_votes.N;
+//function handle_postDataStats(err,data){
+//    if(err)
+//      console.log(err,err.stack);
+//    else
+//      console.log("ok");
+//    var total_views = data.Item.total_views.N;
+//    var total_votes = data.Item.total_votes.N;
 // testing
 //  res.json(total_views+" "+total_votes);
-  function handle_postDataStatsO1(err,data){
-    if(err)
-      console.log(err,err.stack);
-    else
-      console.log("ok");
+//  function handle_postDataStatsO1(err,data){
+//    if(err)
+//      console.log(err,err.stack);
+//    else
+//      console.log("ok");
 // Handle here, how front end needs data
 // res.json(stat data);
       //res.end();    
-}
+//}
 
-}
-}
+//}
+//}
 
 
 //function upload_image(req,s3){
