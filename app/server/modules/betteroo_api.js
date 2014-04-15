@@ -78,7 +78,7 @@ function create_poll(question,option1,option2,image1_ref,image2_ref,dynamodb,res
               "option2VID":{"SS":["null"]},
               // fill in here with option stats dynamically
               // "option1_stats"
-              "created_by":{"S":user_id},
+ //             "created_by":{"S":user_id},
               "created":{"N": new Date().getTime().toString()}
               
             }
