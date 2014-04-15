@@ -251,6 +251,7 @@ app.get('/settings', function(req, res) {
 	// if user is not logged-in redirect back to login page //
 	    //    res.redirect('/');
 	    //}   else{
+	    	console.log("Got request");
 			lib_api.create_poll(req.body.question,
 						req.body.Option1,req.body.Option2,
 						req.body.image1_ref,req.body.image2_ref,
