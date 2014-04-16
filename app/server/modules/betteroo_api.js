@@ -177,13 +177,13 @@ function handle_vote(postID,vote,vote_id){
           },
 
           optionvotevc_key:{
-            "Action":"ADD",
+            "Action":"PUT",
             "Value":{
               "N":"1"
             }     
           },
           optionvotevid_key:{
-            "Action":"ADD",
+            "Action":"PUT",
             "Value":{
               "S":vote_id
             }
