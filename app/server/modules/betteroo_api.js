@@ -156,7 +156,7 @@ function handle_vote(postID,vote,vote_id,res){
   var params = {
           "TableName": "polls",
         "Key": { 
-         "poll_id": {postID}
+         "poll_id": postID
       },
         "AttributeUpdates": {
           "total_votes": {
