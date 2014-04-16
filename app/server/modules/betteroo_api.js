@@ -196,6 +196,7 @@ function handle_vote(postID,vote,vote_id,res){
   }
 
 }
+}
 
 
 //function get_stats(req,res){
