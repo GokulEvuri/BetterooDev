@@ -307,7 +307,7 @@ var S3 = new AWS.S3();
           dynamodb);
 }
 
-test();
+//test();
 
 function print(err,data){
   console.log(data.Item.option1.SS);
