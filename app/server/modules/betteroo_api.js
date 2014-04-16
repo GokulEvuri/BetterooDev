@@ -115,9 +115,12 @@ function get_poll(poll_id,res){
 
 
 //function vote(req,res){
-function vote(postID,vote,time_taken,
+/*function vote(postID,vote,time_taken,
           location,local_time,voter_id,
-          dynamodb,res){
+          dynamodb,res){*/
+  function vote(postID,vote,time_taken,
+          location,local_time,voter_id,
+          dynamodb){
 //See if the option stats are available, if so, add the vote to that list, else add option stat for that option
   // increase total no of votes in option
   var vote_id = vote_id_gen+"";
@@ -139,7 +142,8 @@ function handle_aftervote(err, result) {
     if(err) {console.log(err,err.stack);}
       else  
       {
-        handle_vote(postID,vote,vote_id,res);
+//        handle_vote(postID,vote,vote_id,res);
+          handle_vote(postID,vote,vote_id);
         //Testing
         //console.log(result);
       }
@@ -149,8 +153,8 @@ function handle_aftervote(err, result) {
 // in res write no of votes from  both options as json, so that FE can display both numbers on images
 // res.write();
 
-
-function handle_vote(postID,vote,vote_id,res){
+function handle_vote(postID,vote,vote_id)
+//function handle_vote(postID,vote,vote_id,res){
   
 
   var tmp1 = vote+"VC";
@@ -163,7 +167,7 @@ function handle_vote(postID,vote,vote_id,res){
   var params = {
           "TableName": "polls",
         "Key": { 
-         "poll_id": postID
+         "poll_id": {"N":postID}
       },
         "AttributeUpdates": {
           "total_votes": {
@@ -192,7 +196,8 @@ function handle_vote(postID,vote,vote_id,res){
   if (err) {console.log(err, err.stack); }
   else     {
     //console.log(data);
-    res.send("ok");           
+//    res.send("ok");           
+  console.log("ok");
   }
 
 });
@@ -256,14 +261,14 @@ function handle_vote(postID,vote,vote_id,res){
 
 
 //**** TESTING FUNCTIONS ****//
-function test1(){
+/* function test1(){
   for (var i=0;i<100;i++)
   { 
     poll_id_gen = poll_id_gen+1;
   console.log(poll_id_gen);
   }
 }
-
+*/
 
 
 // to create a new user in database
@@ -287,8 +292,9 @@ function test(){
 // Creating object for dynamoDB
 var dynamodb = new AWS.DynamoDB();
 var S3 = new AWS.S3();
-  create_poll("Who you know?","Osama","Obama",dynamodb);
-  var item = {
+//  create_poll("Who you know?","Osama","Obama",dynamodb);
+
+/*  var item = {
     "Key": {
       "poll_id": {"N":'0'}
     },
@@ -296,9 +302,13 @@ var S3 = new AWS.S3();
     "AttributesToGet":[ "option1"
     ]
   }
-  dynamodb.getItem(item,print);
+  dynamodb.updateItem(item,print);*/
+  vote("1","2","23456",
+          "Sweden","1234","234",
+          dynamodb);
 }
 
+test();
 
 function print(err,data){
   console.log(data.Item.option1.SS);
