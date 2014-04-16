@@ -27,6 +27,7 @@ function register_user(username,email,f_name,l_name,pass_hash,dynamodb){
   });
 };
 
+
 //function is_uname_unieque(username){};
 
 //login
@@ -99,6 +100,18 @@ function create_poll(question,option1,option2,image1_ref,image2_ref,dynamodb,res
 //res.end();
 };
 
+function get_poll(poll_id,res){
+    var item = {
+    "Key": {
+      "poll_id": {"S":post_id}
+    },
+    "TableName": "polls",
+    "AttributesToGet":[ "password"
+    ]
+  }
+  dynamodb.getItem(item,handle_login);
+   
+}
 
 
 //function vote(req,res){
