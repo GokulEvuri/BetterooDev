@@ -86,12 +86,12 @@ function create_poll(question,option1,option2,image1_ref,image2_ref,dynamodb,res
   dynamodb.putItem(poll_var, onput);	
   function onput(err, result) {
       if(err) {
-          res.write("failed");
+          res.send("failed");
           console.log(err,err.stack);
             }
        else  {
        poll_id_gen = poll_id_gen+1;
-       res.write("ok");
+       res.send("ok");
        //console.log(result);
      }
     };
