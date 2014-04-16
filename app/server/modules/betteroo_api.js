@@ -153,10 +153,9 @@ function handle_aftervote(err, result) {
 // in res write no of votes from  both options as json, so that FE can display both numbers on images
 // res.write();
 
-function handle_vote(postID,vote,vote_id)
+function handle_vote(postID,vote,vote_id){
 //function handle_vote(postID,vote,vote_id,res){
   
-
   var tmp1 = vote+"VC";
   //"option"+vote+"VC"
   var optionvotevc_key = "option"+tmp1;
