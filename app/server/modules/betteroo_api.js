@@ -133,7 +133,7 @@ function vote(postID,vote,time_taken,
               "voter":{"S":voter_id}
             }
         };
-  dynamodb.putItem(vote_var, handle_vote);
+  dynamodb.putItem(vote_var, handle_aftervote);
 
 function handle_aftervote(err, result) {
     if(err) {console.log(err,err.stack);}
@@ -150,45 +150,45 @@ function handle_aftervote(err, result) {
 // res.write();
 }
 
-//function handle_vote(postID,vote,vote_id,res){
+function handle_vote(postID,vote,vote_id,res){
   
 
-//  var params = {
-//        "TableName": "polls",
-//        "Key": { 
- //         "poll_id": {postID}
-  //      },
-//        "AttributeUpdates": {
-//          "total_votes": {
-//            "Action": "ADD",
-//            "Value": {
-//              "N": '1'            // Dynamo incriments 1 to existing value
-//            }
-//          },
+  var params = {
+          "TableName": "polls",
+        "Key": { 
+         "poll_id": {postID}
+      },
+        "AttributeUpdates": {
+          "total_votes": {
+            "Action": "ADD",
+            "Value": {
+              "N": '1'            // Dynamo incriments 1 to existing value
+            }
+          },
 
-//          "option"+vote+"VC":{
-//            "Action":"ADD",
-//            "Value":{
-//              "N":"1"
-//            }     
-//          },
-//          "option"+vote+"VID":{
-//            "Action":"ADD",
-//            "Value":{
-//              "S":vote_id
-//            }
-//          }
-//        },
-//      };
+          "option"+vote+"VC":{
+            "Action":"ADD",
+            "Value":{
+              "N":"1"
+            }     
+          },
+          "option"+vote+"VID":{
+            "Action":"ADD",
+            "Value":{
+              "S":vote_id
+            }
+          }
+        },
+      };
  
-//  dynamodb.updateItem(params, function(err, data) {
-//  if (err) {console.log(err, err.stack); }
-//  else     {
+  dynamodb.updateItem(params, function(err, data) {
+  if (err) {console.log(err, err.stack); }
+  else     {
     //console.log(data);
-//    res.write("ok");           
-//  }
-//}
-//}
+    res.send("ok");           
+  }
+
+}
 
 
 //function get_stats(req,res){
