@@ -153,6 +153,13 @@ function handle_aftervote(err, result) {
 function handle_vote(postID,vote,vote_id,res){
   
 
+  var tmp1 = vote+"VC";
+  //"option"+vote+"VC"
+  var optionvotevc_key = "option"+tmp1;
+  //"option"+vote+"VID"
+  var tmp2 = vote+"VID";
+  var optionvotevid_key = "option"+tmp2;
+
   var params = {
           "TableName": "polls",
         "Key": { 
@@ -166,13 +173,13 @@ function handle_vote(postID,vote,vote_id,res){
             }
           },
 
-          "option"+vote+"VC":{
+          optionvotevc_key:{
             "Action":"ADD",
             "Value":{
               "N":"1"
             }     
           },
-          "option"+vote+"VID":{
+          optionvotevid_key:{
             "Action":"ADD",
             "Value":{
               "S":vote_id
