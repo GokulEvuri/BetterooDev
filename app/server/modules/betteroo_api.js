@@ -133,7 +133,7 @@ function vote(postID,vote,time_taken,
               "voter":{"S":voter_id}
             }
         };
-  dynamodb.putItem(poll_var, handle_vote);
+  dynamodb.putItem(vote_var, handle_vote);
 
 function handle_aftervote(err, result) {
     if(err) {console.log(err,err.stack);}
