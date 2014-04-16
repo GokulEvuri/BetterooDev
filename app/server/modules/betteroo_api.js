@@ -195,7 +195,7 @@ function handle_vote(postID,vote,vote_id,res){
     res.send("ok");           
   }
 
-}
+});
 }
 
 
