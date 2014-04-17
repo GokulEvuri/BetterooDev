@@ -204,7 +204,7 @@ function handle_vote(postID,vote,vote_id){
 }
 
 function get_stats(req,res){
-   Get post id from req
+ //  Get post id from req
   var postID = req.query.post_id;
 
   // Get following details related to post_id
