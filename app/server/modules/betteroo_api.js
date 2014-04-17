@@ -203,9 +203,9 @@ function handle_vote(postID,vote,vote_id){
 }
 }
 
-//function get_stats(req,res){
-  // Get post id from req
-//  var postID = req.query.post_id;
+function get_stats(req,res){
+   Get post id from req
+  var postID = req.query.post_id;
 
   // Get following details related to post_id
     //Total Votes
@@ -217,40 +217,40 @@ function handle_vote(postID,vote,vote_id){
     //Time of votes with 5 minutes resulotion
     //Time of votes with after showing the poll
   // Construct JSON with following keys
-  // Send this constructed JSON to using res.sendjson()
- // var item = {
- //   "Key": {
- //     "poll_id": {"N":postID}
- //   },
- //   "TableName": "polls",
- //   "AttributesToGet":[ "total_votes","total_views","option1VID","option2VID"
- //   ]
- // }
+// Send this constructed JSON to using res.sendjson()
+ var item = {
+   "Key": {
+     "poll_id": {"N":postID}
+   },
+   "TableName": "polls",
+  "AttributesToGet":[ "total_votes","total_views","option1VID","option2VID"
+   ]
+ }
 
- // dynamodb.getItem(item,handle_postDataStats);
+ dynamodb.getItem(item,handle_postDataStats);
 
 
-//function handle_postDataStats(err,data){
-//    if(err)
-//      console.log(err,err.stack);
-//    else
-//      console.log("ok");
-//    var total_views = data.Item.total_views.N;
-//    var total_votes = data.Item.total_votes.N;
+function handle_postDataStats(err,data){
+    if(err)
+      console.log(err,err.stack);
+    else
+      console.log("ok");
+    var total_views = data.Item.total_views.N;
+    var total_votes = data.Item.total_votes.N;
 // testing
-//  res.json(total_views+" "+total_votes);
-//  function handle_postDataStatsO1(err,data){
-//    if(err)
-//      console.log(err,err.stack);
-//    else
-//      console.log("ok");
+  res.json(total_views+" "+total_votes);
+  function handle_postDataStatsO1(err,data){
+    if(err)
+      console.log(err,err.stack);
+    else
+      console.log("ok");
 // Handle here, how front end needs data
-// res.json(stat data);
+ res.json(stat data);
       //res.end();    
-//}
+}
 
-//}
-//}
+}
+}
 
 
 //function upload_image(req,s3){

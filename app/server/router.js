@@ -13,6 +13,7 @@ module.exports = function(app) {
 
 // main login page //
 
+// www.betteroo.com/
 	app.get('/', function(req, res){
 	// check if the user's credentials are saved in a cookie //
 		if (req.cookies.user == undefined || req.cookies.pass == undefined){
@@ -46,7 +47,7 @@ module.exports = function(app) {
 	});
 	
 // logged-in user homepage //
-	
+	// www.betteroo.com/home
 	app.get('/home', function(req, res) {
 	    if (req.session.user == null){
 	// if user is not logged-in redirect back to login page //
@@ -212,6 +213,7 @@ app.get('/settings', function(req, res) {
 
 
 	// End point for statistic values from server
+	// www.betteroo.com/get_stats?post_id=1234
 	app.get('/get_stats', function(req,res){
 		if(req.session.user== null){
 			res.redirect('/');
