@@ -245,7 +245,7 @@ function handle_postDataStats(err,data){
     else
       console.log("ok");
 // Handle here, how front end needs data
- res.json(stat data);
+// res.json(stat data);
       //res.end();    
 }
 
