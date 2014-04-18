@@ -104,7 +104,7 @@ function get_poll(poll_id,dynamodb){
 //function get_poll(poll_id,dynamodb,res){
     var item = {
     "Key": {
-      "poll_id": {"S":poll_id}
+      "poll_id": {"N":poll_id}
     },
     "TableName": "polls",
     "AttributesToGet":["poll_id","total_votes","question","option1","option2",
