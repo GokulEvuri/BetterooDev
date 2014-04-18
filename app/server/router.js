@@ -238,7 +238,7 @@ app.get('/settings', function(req, res) {
 	    }   else{
 			res.sendfile("./app/server/views/create_poll.html");
 	    }
-
+	    next();
 	});
 
 	// To serve the content "Endpoint create poll"
@@ -253,7 +253,7 @@ app.get('/settings', function(req, res) {
 						req.body.image1_ref,req.body.image2_ref,
 						dynamodb,res);
 	    //}
-
+	next();
 	});
 
 	// To vote "Endpoint vote"
