@@ -103,7 +103,7 @@ function create_poll(question,option1,option2,image1_ref,image2_ref,dynamodb,res
 function get_poll(poll_id,res){
     var item = {
     "Key": {
-      "poll_id": {"S":post_id}
+      "poll_id": {"S":poll_id}
     },
     "TableName": "polls"
 //   ,"AttributesToGet":[ "password"]
