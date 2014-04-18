@@ -100,8 +100,8 @@ function create_poll(question,option1,option2,image1_ref,image2_ref,dynamodb,res
 //res.end();
 };
 
-function get_poll(poll_id,dynamodb){
-//function get_poll(poll_id,dynamodb,res){
+//function get_poll(poll_id,dynamodb){
+function get_poll(poll_id,dynamodb,res){
     var item = {
     "Key": {
       "poll_id": {"N":poll_id}
@@ -114,8 +114,8 @@ function get_poll(poll_id,dynamodb){
 
 
 function send_poll(err, result){
- // res.send(JSON.stringify(result));
-console.log(JSON.stringify(result));
+  res.send(JSON.stringify(result));
+//console.log(JSON.stringify(result));
 }
 }
 
@@ -310,10 +310,10 @@ var dynamodb = new AWS.DynamoDB();
   vote("1","2","23456",
           "Sweden","1234","234",
           dynamodb);*/
-get_poll('0',dynamodb);
+//get_poll('0',dynamodb);
 }
 
-test();
+//test();
 
 function print(err,data){
   console.log(data.Item.option1.SS);
