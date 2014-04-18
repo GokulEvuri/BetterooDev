@@ -18,7 +18,8 @@
 		"mongodb": "1.2.7",
 		"moment" : "1.7.2",
 		"emailjs": "0.3.3",
-		"aws-sdk":"*"
+		"aws-sdk":"*",
+		"consolidate":"*"
 	},
 	"engines": {
 		"node": "0.8.14",
