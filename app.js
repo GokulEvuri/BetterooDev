@@ -14,7 +14,7 @@ var allowCrossDomain = function(req, res, next) {
 app.configure(function(){
 	app.set('port', 8080);
 	app.set('views', __dirname + '/app/server/views');
-	app.set('view engine', 'jade');
+//	app.set('view engine', 'jade');
 	app.locals.pretty = true;
 //	app.use(express.favicon());
 	app.use(express.logger('dev'));
@@ -23,7 +23,7 @@ app.configure(function(){
 	app.use(express.session({ secret: 'super-duper-secret-secret' }));
 	app.use(express.methodOverride());
     app.use(allowCrossDomain);
-	app.use(require('stylus').middleware({ src: __dirname + '/app/public' }));
+//	app.use(require('stylus').middleware({ src: __dirname + '/app/public' }));
 	app.use(express.static(__dirname + '/app/public'));
 
 });
