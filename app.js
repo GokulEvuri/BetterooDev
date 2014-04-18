@@ -2,6 +2,16 @@ var express = require('express');
 var http = require('http');
 var app = express();
 
+
+var allowCrossDomain = function(req, res, next) {
+//    res.header('Access-Control-Allow-Origin', config.allowedDomains);
+	res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+
+    next();
+}
+
 app.configure(function(){
 	app.set('port', 8080);
 	app.set('views', __dirname + '/app/server/views');
@@ -13,8 +23,10 @@ app.configure(function(){
 	app.use(express.cookieParser());
 	app.use(express.session({ secret: 'super-duper-secret-secret' }));
 	app.use(express.methodOverride());
+    app.use(allowCrossDomain);
 	app.use(require('stylus').middleware({ src: __dirname + '/app/public' }));
 	app.use(express.static(__dirname + '/app/public'));
+
 });
 
 app.configure('development', function(){
