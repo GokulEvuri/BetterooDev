@@ -107,7 +107,8 @@ function get_poll(poll_id,dynamodb){
       "poll_id": {"S":poll_id}
     },
     "TableName": "polls",
-    "AttributesToGet":[ ]
+    "AttributesToGet":["poll_id","total_votes","question","option1","option2",
+                        "option1VC","option2VC"]
   }
   dynamodb.getItem(item,send_poll);
 
