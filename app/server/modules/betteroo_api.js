@@ -108,10 +108,13 @@ function get_poll(poll_id,dynamodb,res){
     "TableName": "polls"
 //   ,"AttributesToGet":[ "password"]
   }
-  dynamodb.getItem(item,handle_login);
-   
-}
+  dynamodb.getItem(item,send_poll);
 
+
+function send_poll(err, result){
+  res.send(JSON.stringify(result));
+}
+}
 
 //function vote(req,res){
 /*function vote(postID,vote,time_taken,
