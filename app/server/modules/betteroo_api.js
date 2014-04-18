@@ -106,8 +106,8 @@ function get_poll(poll_id,dynamodb){
     "Key": {
       "poll_id": {"S":poll_id}
     },
-    "TableName": "polls"
-//   ,"AttributesToGet":[ "password"]
+    "TableName": "polls",
+    "AttributesToGet":[ ]
   }
   dynamodb.getItem(item,send_poll);
 
