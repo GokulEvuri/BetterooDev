@@ -1,9 +1,5 @@
-<html> 
-  <head>
-    <title>S3 POST Form</title> 
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  </head>
-
+extends layout 
+  title S3 POST Form 
   <body> 
     <form action="https://s3-bucket.s3.amazonaws.com/" method="post" enctype="multipart/form-data">
       <input type="hidden" name="key" value="uploads/${filename}">
