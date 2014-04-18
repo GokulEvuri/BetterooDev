@@ -100,7 +100,8 @@ function create_poll(question,option1,option2,image1_ref,image2_ref,dynamodb,res
 //res.end();
 };
 
-function get_poll(poll_id,dynamodb,res){
+function get_poll(poll_id,dynamodb){
+//function get_poll(poll_id,dynamodb,res){
     var item = {
     "Key": {
       "poll_id": {"S":poll_id}
@@ -112,7 +113,8 @@ function get_poll(poll_id,dynamodb,res){
 
 
 function send_poll(err, result){
-  res.send(JSON.stringify(result));
+ // res.send(JSON.stringify(result));
+console.log(JSON.stringify(result));
 }
 }
 
@@ -292,7 +294,7 @@ AWS.config.loadFromPath('./config.json');
 function test(){
 // Creating object for dynamoDB
 var dynamodb = new AWS.DynamoDB();
-var S3 = new AWS.S3();
+//var S3 = new AWS.S3();
 //  create_poll("Who you know?","Osama","Obama",dynamodb);
 
 /*  var item = {
@@ -303,10 +305,11 @@ var S3 = new AWS.S3();
     "AttributesToGet":[ "option1"
     ]
   }
-  dynamodb.updateItem(item,print);*/
+  dynamodb.updateItem(item,print);
   vote("1","2","23456",
           "Sweden","1234","234",
-          dynamodb);
+          dynamodb);*/
+get_poll('0',dynamodb);
 }
 
 test();
