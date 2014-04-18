@@ -1,7 +1,7 @@
 var express = require('express');
 var http = require('http');
 var app = express();
-var engines = require('consolidate');
+//var engine = require('consolidate');
 
 var allowCrossDomain = function(req, res, next) {
 //    res.header('Access-Control-Allow-Origin', config.allowedDomains);
@@ -14,8 +14,7 @@ var allowCrossDomain = function(req, res, next) {
 app.configure(function(){
 	app.set('port', 8080);
 	app.set('views', __dirname + '/app/server/views');
-	app.engine('jade', 'engines.jade');
-	app.engine('html', 'engines.ejs');
+	app.set('view engine', 'jade');
 	app.locals.pretty = true;
 //	app.use(express.favicon());
 	app.use(express.logger('dev'));

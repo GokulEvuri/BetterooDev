@@ -105,9 +105,8 @@ function get_poll(poll_id,res){
     "Key": {
       "poll_id": {"S":post_id}
     },
-    "TableName": "polls",
-    "AttributesToGet":[ "password"
-    ]
+    "TableName": "polls"
+//   ,"AttributesToGet":[ "password"]
   }
   dynamodb.getItem(item,handle_login);
    
