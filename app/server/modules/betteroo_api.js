@@ -100,7 +100,7 @@ function create_poll(question,option1,option2,image1_ref,image2_ref,dynamodb,res
 //res.end();
 };
 
-function get_poll(poll_id,res){
+function get_poll(poll_id,dynamodb,res){
     var item = {
     "Key": {
       "poll_id": {"S":poll_id}
