@@ -1,0 +1,3 @@
+Problem with the front end solved, Found the solution. 
+P1 - create_poll.html, line 29, data: is not been stringfied in a correct way, so getting the error, bad request.
+P2 - create_poll.html, line 27, dataType: it is to show what kind of data the request is expected to receive after the request is done.
