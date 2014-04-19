@@ -19,13 +19,14 @@
                     var question = $("#caption-text").val();
                     var option1 = $("#choice1-text").val();
                     var option2 = $("#choice2-text").val();
+                    var temp_data = { "question": question, "Option1": option1, "Option2": option2, "image1_ref": "s3imgbuk01", "image2_ref": "s3imgbuk01" }; 
 
                     $.ajax({
                         type: "POST",
                         url: "http://betteroo.com:8080/create_poll",
                         dataType: 'json',
                         contentType: "application/json; charset=utf-8",
-                        data: '{ "question": question, "Option1": option1, "Option2": option2, "image1_ref": "s3imgbuk01", "image2_ref": "s3imgbuk01" }',
+                        data: JSON.stringify(temp_data),
                         error: function(XMLHttpRequest, textStatus, errorThrown) {
                             alert(textStatus);
                         },
