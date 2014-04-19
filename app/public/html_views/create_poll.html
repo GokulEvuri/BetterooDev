@@ -25,7 +25,7 @@
                         url: "http://betteroo.com:8080/create_poll",
                         dataType: 'json',
                         contentType: "application/json; charset=utf-8",
-                        data: { "question": question, "Option1": option1, "Option2": option2, "image1_ref": "s3imgbuk01", "image2_ref": "s3imgbuk01" },
+                        data: '{ "question": question, "Option1": option1, "Option2": option2, "image1_ref": "s3imgbuk01", "image2_ref": "s3imgbuk01" }',
                         error: function(XMLHttpRequest, textStatus, errorThrown) {
                             alert(textStatus);
                         },
