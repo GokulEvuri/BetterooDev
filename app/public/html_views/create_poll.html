@@ -29,9 +29,11 @@
                         data: JSON.stringify(temp_data),
                         error: function(XMLHttpRequest, textStatus, errorThrown) {
                             alert(textStatus);
+                            alert(errorThrown);
                         },
                         success: function(result) {
                             alert("success");
+                            alert(result);
                         }
                     });
                     return false;
