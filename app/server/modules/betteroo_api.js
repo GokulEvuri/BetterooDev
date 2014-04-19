@@ -92,7 +92,7 @@ function create_poll(question,option1,option2,image1_ref,image2_ref,dynamodb,res
             }
        else  {
        poll_id_gen = poll_id_gen+1;
-       res.send("ok");
+       res.json("ok");
        //console.log(result);
      }
     };
