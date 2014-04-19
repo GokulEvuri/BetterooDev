@@ -224,7 +224,6 @@ app.get('/settings', function(req, res) {
 	});
 
 	app.get('/get_poll', function(req, res) {
-		console.log("came here");
 			lib_api.get_poll(req.query.post_id,dynamodb,res);
 	});
 
