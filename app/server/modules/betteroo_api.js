@@ -2,6 +2,7 @@
 
 var poll_id_gen = 0;
 var vote_id_gen = 0;
+var image_id_gen = 0;
 
 //**** Abstract Functions ****//
 
@@ -48,17 +49,24 @@ function handle_login(err,data){
 		if(err)
 			console.log(err,err.stack);
 		else
-			console.log("ok");
+//			console.log("ok");
 		var login_bool=(data.Item.password.S==pass_hash)?"true":"false";
-			console.log("22 "+login_bool);
+//			console.log("22 "+login_bool);
 			res.json(login_bool);
 			//res.end();		
 }
 
 };
 
+
+// Image referance
+function get_imageref_id(res){
+    res.json('{image_ref,'+ image_id_gen+1 +'}');
+}
+
 // For MVP, later handle options as an array
 // Function create_poll(question,option1,option2,dynamodb,res){
+// Image_ref, position update(with x1,2 and y1,2); dimentions (width, height);
 function create_poll(question,option1,option2,image1_ref,image2_ref,dynamodb,res){
   
 	var poll_var =  {
@@ -80,8 +88,7 @@ function create_poll(question,option1,option2,image1_ref,image2_ref,dynamodb,res
               // fill in here with option stats dynamically
               // "option1_stats"
  //             "created_by":{"S":user_id},
-              "created":{"N": new Date().getTime().toString()}
-              
+              "created":{"N": new Date().getTime().toString()}              
             }
         };
   dynamodb.putItem(poll_var, onput);	

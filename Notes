@@ -1,3 +1,4 @@
 Problem with the front end solved, Found the solution. 
 P1 - create_poll.html, line 29, data: is not been stringfied in a correct way, so getting the error, bad request.
 P2 - create_poll.html, line 27, dataType: it is to show what kind of data the request is expected to receive after the request is done.
+I’m thinking that we should add every time the poll is edited in a new line. After editing we will have a new line with the same poll_id and we can add a column with a counter 0 for creation, 1 after first editing...

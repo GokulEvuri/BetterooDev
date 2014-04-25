@@ -224,7 +224,7 @@ app.get('/settings', function(req, res) {
 	});
 
 	app.get('/get_poll', function(req, res) {
-			lib_api.get_poll(req.query.post_id,dynamodb,res);
+			lib_api.get_poll(req.query.poll_id,dynamodb,res);
 	});
 
 	// To serve create_poll page
@@ -255,7 +255,7 @@ app.get('/settings', function(req, res) {
 
 	// To vote "Endpoint vote"
 	app.post('/vote', function(req, res) {
-		lib_api.vote(req.body.post_id,req.body.option,req.body.time_taken,
+		lib_api.vote(req.body.poll_id,req.body.option,req.body.time_taken,
 					req.body.location,req.body.local_time,
 					req.body.user_id,
 					dynamodb,res);
