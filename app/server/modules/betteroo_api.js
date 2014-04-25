@@ -361,3 +361,4 @@ exports.create_poll = create_poll;
 exports.get_poll = get_poll;
 //exports.get_stats = get_stats;
 exports.vote = vote;
+exports.get_imageref_id = get_imageref_id;
