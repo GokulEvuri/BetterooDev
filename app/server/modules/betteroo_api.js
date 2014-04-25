@@ -61,7 +61,8 @@ function handle_login(err,data){
 
 // Image referance
 function get_imageref_id(res){
-    res.json('{image_ref,'+ image_id_gen+1 +'}');
+    res.json('{image_ref,'+ image_id_gen+ 1 +'}');
+    image_id_gen = image_id_gen+1;
 }
 
 // For MVP, later handle options as an array
