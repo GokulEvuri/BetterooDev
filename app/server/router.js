@@ -260,7 +260,8 @@ app.get('/settings', function(req, res) {
 	   // 	console.log("Got request");
 			lib_api.create_poll(req.body.question,
 						req.body.Option1,req.body.Option2,
-						req.body.image1_ref,req.body.image2_ref,
+						req.body.image1_ref,req.body.i1_width,req.body.i1_height,req.body.i1_left,req.body.i1_right,req.body.i1_bottom,req.body.i1_up,
+						req.body.image2_ref,req.body.i2_width,req.body.i2_height,req.body.i2_left,req.body.i2_right,req.body.i2_bottom,req.body.i2_up,
 						dynamodb,res);
 	    //}
 	

@@ -69,7 +69,11 @@ function get_imageref_id(res){
 // For MVP, later handle options as an array
 // Function create_poll(question,option1,option2,dynamodb,res){
 // Image_ref, position update(with x1,2 and y1,2); dimentions (width, height);
-function create_poll(question,option1,option2,image1_ref,image2_ref,dynamodb,res){
+function create_poll(question,
+                      option1,option2,
+                      image1_ref,i1_width,i1_height,i1_left,i1_right,i1_bottom,i1_up,
+                      image2_ref,i2_width,i2_height,i2_left,i2_right,i2_bottom,i2_up,
+                      dynamodb,res){
   
 	var poll_var =  {
             "TableName":"polls",
@@ -80,7 +84,9 @@ function create_poll(question,option1,option2,image1_ref,image2_ref,dynamodb,res
               "question":{"S":question},
               // Option Discription, image reference(Key) from S3,No.Of votes
               "option1":{"SS":[option1,image1_ref]},
+              "image1_dimensions":{"SS":[i1_width,i1_height,i1_left,i1_right,i1_bottom,i1_up]},
               "option2":{"SS":[option2,image2_ref]},
+              "image1_dimensions":{"SS":[i2_width,i2_height,i2_left,i2_right,i2_bottom,i2_up]},
               //Option view countS
               "option1VC":{"N":"0"},
               "option2VC":{"N":"0"},
