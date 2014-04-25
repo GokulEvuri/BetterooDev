@@ -45,6 +45,19 @@ module.exports = function(app) {
 			}
 		});
 	});
+
+
+
+
+	app.post('/get_imageref_id', function(req, res) {
+//	    if (req.session.user == null){
+	// if user is not logged-in redirect back to login page //
+//	        res.redirect('/');
+//	    }   else{
+			lib_api.get_imageref_id(res);
+//		}
+	});
+
 	
 // logged-in user homepage //
 	// www.betteroo.com/home
