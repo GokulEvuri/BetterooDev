@@ -3,37 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="../css/style_cp.css"/>
+    <link rel="stylesheet" type="text/css" href="./app/public/css/style_cp.css"/>
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script language="javascript" type="text/javascript" src="./app/public/js/jquery.min.js"></script>
+
 
 
     <title>Create New Poll </title>
 </head>
 <body>
     <div class="pollcreator">
+
         <script>
             $(document).ready(function() {
                 $("#js-create-button").click(function(event) {
 
-                    var question = $("#caption-text").val();
-                    var option1 = $("#choice1-text").val();
-                    var option2 = $("#choice2-text").val();
-                    var temp_data = { "question": question, "Option1": option1, "Option2": option2, "image1_ref": "s3imgbuk01", "image2_ref": "s3imgbuk01" }; 
+//                    var question = $("#caption-text").val();
+//                   var option1 = $("#choice1-text").val();
+//                    var option2 = $("#choice2-text").val();
 
                     $.ajax({
                         type: "POST",
                         url: "http://betteroo.com:8080/create_poll",
                         dataType: 'json',
-                        contentType: "application/json; charset=utf-8",
-                        data: JSON.stringify(temp_data),
+                        beforeSend: function(x) {
+                                    if(x && x.overrideMimeType) {
+                                    x.overrideMimeType("application/json;charset=UTF-8");
+                                        }},
+
+//                        contentType: "application/json; charset=utf-8",
+//                        data: { "question": question, "Option1": option1, "Option2": option2, "image1_ref": "s3imgbuk01", "image2_ref": "s3imgbuk01" },
+                        data: '{"question":"po","Option1":"ga","Option2":"g","image1_ref":"gp","i1_width":"gq","i1_height":"gw","i1_left":"ge","i1_right":"gr","i1_bottom":"gt","i1_up":"gy","image2_ref":"gu","i2_width":"gi","i2_height":"go","i2_left":"gd","i2_right":"gs","i2_bottom":"df","i2_up":"dg"}',
                         error: function(XMLHttpRequest, textStatus, errorThrown) {
-                            //alert(textStatus);
-                            alert(errorThrown);
+                            alert(textStatus);
                         },
                         success: function(result) {
                             alert("success");
-                            alert(result);
                         }
                     });
                     return false;
