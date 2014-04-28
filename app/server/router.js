@@ -240,6 +240,10 @@ app.get('/settings', function(req, res) {
 			lib_api.get_poll(req.query.poll_id,dynamodb,res);
 	});
 
+	app.post('/get_poll', function(req, res) {
+			lib_api.get_poll(req.body.poll_id,dynamodb,res);
+	});
+
 	// To serve create_poll page
 	app.get('/create_poll', function(req, res) {
 		//if (req.session.user == null){
