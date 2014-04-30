@@ -129,7 +129,15 @@ function get_poll(poll_id,dynamodb,res){
 
 
 function send_poll(err, result){
-  res.send(JSON.stringify(result));
+  var sData = {
+            "question": result.Item.question,
+            "option1": result.Item.option1,
+            "option1VC": result.Item.option1VC,
+            "option2": result.Item.option2,
+            "option2VC": result.Item.option2VC,
+            "poll_id":result.Item.poll_id    
+};
+  res.send(JSON.stringify(sData));
 //console.log(JSON.stringify(result));
 }
 }
