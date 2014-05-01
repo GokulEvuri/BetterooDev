@@ -283,6 +283,9 @@ app.get('/settings', function(req, res) {
 	// To vote "Endpoint vote"
 	app.post('/vote', function(req, res) {
 		lib_api.vote(req.body.poll_id,req.body.option,req.body.time_taken,
+					//location must be a json object with the following structure
+					//	{country_name,city,region_name,latitude,longitude,area_code}
+					//	if any value doesn't exist, put a "null" string to it
 					req.body.location,req.body.local_time,
 					req.body.user_id,req.connection.remoteAddress,
 					dynamodb,res);

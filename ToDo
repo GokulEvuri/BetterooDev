@@ -9,3 +9,6 @@ and give access to s3
 
 Restarting Server
 ID generators need to be loaded with new numbers --- "Smart" Solution needed %% think about saving global variables in databse
+
+Betteroo API
+// implement active/inactive with unvote function

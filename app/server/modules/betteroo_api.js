@@ -145,6 +145,7 @@ function send_poll(err, result){
 }
 }
 
+// implement active/inactive with unvote function
 //function vote(req,res){
 function vote(postID,vote,time_taken,
           location,local_time,voter_id,ip_address,
@@ -162,7 +163,7 @@ function vote(postID,vote,time_taken,
               "votedOn":{"N": new Date().getTime().toString()},
               "voted_option":{"N":vote+""},
               "time_taken":{"N":time_taken+""},
-              "location":{"S":location},
+              "location":{"SS":[location.country_name,location.city,location.region_name,location.latitude,location.longitude,location.area_code]},
               "ip_address":{"S":ip_address},
               "local_time":{"N":local_time+""},
               "voter":{"S":voter_id}
