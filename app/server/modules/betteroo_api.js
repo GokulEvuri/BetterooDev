@@ -3,6 +3,7 @@
 var poll_id_gen = 0;
 var vote_id_gen = 0;
 var image_id_gen = 0;
+var s3_bucket = "betteroo-images";
 
 //**** Abstract Functions ****//
 
