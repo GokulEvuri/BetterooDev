@@ -86,7 +86,7 @@ function create_poll(question,
               "option1":{"SS":[option1,image1_ref]},
               "image1_dimensions":{"SS":[i1_width,i1_height,i1_left,i1_right,i1_bottom,i1_up]},
               "option2":{"SS":[option2,image2_ref]},
-              "image1_dimensions":{"SS":[i2_width,i2_height,i2_left,i2_right,i2_bottom,i2_up]},
+              "image2_dimensions":{"SS":[i2_width,i2_height,i2_left,i2_right,i2_bottom,i2_up]},
               //Option view countS
               "option1VC":{"N":"0"},
               "option2VC":{"N":"0"},
@@ -122,7 +122,7 @@ function get_poll(poll_id,dynamodb,res){
       "poll_id": {"N":poll_id}
     },
     "TableName": "polls",
-    "AttributesToGet":["poll_id","total_votes","question","option1","option2",
+    "AttributesToGet":["poll_id","total_votes","question","option1","image1_dimensions","option2","image2_dimensions",
                         "option1VC","option2VC"]
   }
   dynamodb.getItem(item,send_poll);
@@ -132,10 +132,12 @@ function send_poll(err, result){
   var sData = {
             "question": result.Item.question,
             "option1": result.Item.option1,
+            "image1_dimensions": result.Item.image1_dimensions,
             "option1VC": result.Item.option1VC,
             "option2": result.Item.option2,
+            "image2_dimensions": result.Item.image2_dimensions,
             "option2VC": result.Item.option2VC,
-            "poll_id":result.Item.poll_id    
+            "poll_id":result.Item.poll_id
 };
   res.send(JSON.stringify(sData));
 //console.log(JSON.stringify(result));
