@@ -290,8 +290,9 @@ app.get('/settings', function(req, res) {
 	
 	app.get('/test', function(req,res){
 	console.log(req.headers['X-Forwarded-For']);
+	res.send(req.connection.remoteAddress);
 	});
-	
+
 	app.get('*', function(req, res) { res.render('404', { title: 'Page Not Found'}); });
 
 };
