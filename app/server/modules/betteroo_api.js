@@ -163,7 +163,8 @@ function vote(postID,vote,time_taken,
               "votedOn":{"N": new Date().getTime().toString()},
               "voted_option":{"N":vote+""},
               "time_taken":{"N":time_taken+""},
-              "location":{"SS":[location.country_name,location.city,location.region_name,location.latitude,location.longitude,location.area_code]},
+              "location":{"SS":[location.country_name,location.city,location.region_name,
+                                location.latitude,location.longitude,location.area_code]},
               "ip_address":{"S":ip_address},
               "local_time":{"N":local_time+""},
               "voter":{"S":voter_id}
@@ -175,6 +176,7 @@ function handle_aftervote(err, result) {
     if(err) {console.log(err,err.stack);}
       else  
       {
+        vote_id_gen = vote_id_gen + 1;
 //        handle_vote(postID,vote,vote_id,res);
           handle_vote(postID,vote,vote_id);
         //Testing
