@@ -290,7 +290,7 @@ function handle_postDataStats(err,data){
 
 //function get_heatmapdata(req,res,dynamodb){
 function get_heatmapdata(dynamodb){
-    dynamodb.scan({
+    dynamodb.client.scan({
         TableName : "votes",
         Limit : 50
     }, function(err, data) {
