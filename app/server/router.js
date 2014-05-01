@@ -284,7 +284,7 @@ app.get('/settings', function(req, res) {
 	app.post('/vote', function(req, res) {
 		lib_api.vote(req.body.poll_id,req.body.option,req.body.time_taken,
 					req.body.location,req.body.local_time,
-					req.body.user_id,req.headers['X-Forwarded-For'],
+					req.body.user_id,req.connection.remoteAddress,
 					dynamodb,res);
 	});
 	

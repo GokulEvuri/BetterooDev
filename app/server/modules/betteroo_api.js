@@ -146,12 +146,12 @@ function send_poll(err, result){
 }
 
 //function vote(req,res){
-/*function vote(postID,vote,time_taken,
+function vote(postID,vote,time_taken,
           location,local_time,voter_id,ip_address,
-          dynamodb,res){*/
-  function vote(postID,vote,time_taken,
+          dynamodb,res){
+/* function vote(postID,vote,time_taken,
           location,local_time,voter_id,ip_address,
-          dynamodb){
+          dynamodb){*/
 //See if the option stats are available, if so, add the vote to that list, else add option stat for that option
   // increase total no of votes in option
   var vote_id = vote_id_gen+"";
@@ -228,10 +228,9 @@ function handle_vote(postID,vote,vote_id){
   if (err) {console.log(err, err.stack); }
   else     {
     //console.log(data);
-//    res.send("ok");           
+  res.send("ok");           
   console.log("ok");
   }
-
 });
 }
 }
@@ -342,7 +341,30 @@ function test(){
 var dynamodb = new AWS.DynamoDB();
 //var S3 = new AWS.S3();
 //  create_poll("Who you know?","Osama","Obama",dynamodb);
-
+var params = {
+        TableName : 'votes',
+        IndexName : 'make-index',
+        KeyConditions : 
+        {
+            "make" : 
+            {
+                "AttributeValueList" : [
+                {
+                    "S" : 'ford'
+                }
+                ],
+                "ComparisonOperator" : "EQ"
+            }
+        },
+    }
+    dynamodb.query(params, function(err, data) {
+        if (err) {
+            console.log (err)
+            callback(err, null)
+        } else {
+            callback(null, data.Items)
+        }
+    });
 /*  var item = {
     "Key": {
       "poll_id": {"N":'0'}
