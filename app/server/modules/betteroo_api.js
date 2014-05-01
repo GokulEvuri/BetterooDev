@@ -288,8 +288,23 @@ function handle_postDataStats(err,data){
 }
 
 
-function get_heatmapdata(req,res,dynamodb){
-
+//function get_heatmapdata(req,res,dynamodb){
+function get_heatmapdata(dynamodb){
+    dynamodb.scan({
+        TableName : "votes",
+        Limit : 50
+    }, function(err, data) {
+        if (err) { console.log(err); return; }
+        console.log(data.id);
+ 
+        for (var ii in data.Items) {
+            ii = data.Items[ii];
+            console.log(ii.id);
+            console.log(ii.taken);
+            console.log(ii.thumb);
+            console.log(ii.full);
+        }
+    });
 
 }
 
@@ -342,9 +357,11 @@ AWS.config.loadFromPath('./config.json');
 function test(){
 // Creating object for dynamoDB
 var dynamodb = new AWS.DynamoDB();
+get_heatmapdata(dynamodb);
+
 //var S3 = new AWS.S3();
 //  create_poll("Who you know?","Osama","Obama",dynamodb);
-var params = {
+/*var params = {
         TableName : 'votes',
         IndexName : 'make-index',
         KeyConditions : 
@@ -367,7 +384,8 @@ var params = {
         } else {
             callback(null, data.Items)
         }
-    });
+    });*/
+
 /*  var item = {
     "Key": {
       "poll_id": {"N":'0'}
@@ -383,7 +401,7 @@ var params = {
 //get_poll('0',dynamodb);
 }
 
-//test();
+test();
 
 function print(err,data){
   console.log(data.Item.option1.SS);
