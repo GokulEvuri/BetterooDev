@@ -283,6 +283,15 @@ function handle_postDataStats(err,data){
 }
 
 
+//to get a signed url to load images from s3
+function get_s3Url(req,res){
+  var params = {Bucket: s3_bucket, Key: req.body.image_ref, Expires: 60};
+  var url = s3.getSignedUrl('getObject', params, function (err, url) {
+    if (url) console.log("The URL is", url);
+    var tmpUrl = {"url":url};
+    res.send(JSON.stringify(tmpUrl));
+  });
+}
 //function upload_image(req,s3){
 //}
 
@@ -370,6 +379,7 @@ function cpdsa(question,option1,option2,dynamodb){
 //res.end();
 };
 
+
 //test();
 
 //exports.register_user = register_user; //public function
@@ -380,3 +390,4 @@ exports.get_poll = get_poll;
 //exports.get_stats = get_stats;
 exports.vote = vote;
 exports.get_imageref_id = get_imageref_id;
+exports.get_s3Url = get_s3Url;

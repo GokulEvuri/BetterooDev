@@ -244,6 +244,14 @@ app.get('/settings', function(req, res) {
 			lib_api.get_poll(req.body.poll_id,dynamodb,res);
 	});
 
+	app.post('/get_s3Url',function(req,res){
+		lib_api.get_s3Url(req,res);
+	});
+
+	app.get('/get_s3Url',function(req,res){
+		lib_api.get_s3Url(req,res);
+	});
+
 	// To serve create_poll page
 	app.get('/create_poll', function(req, res) {
 		//if (req.session.user == null){
