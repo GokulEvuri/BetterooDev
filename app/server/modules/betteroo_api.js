@@ -147,10 +147,10 @@ function send_poll(err, result){
 
 //function vote(req,res){
 /*function vote(postID,vote,time_taken,
-          location,local_time,voter_id,
+          location,local_time,voter_id,ip_address,
           dynamodb,res){*/
   function vote(postID,vote,time_taken,
-          location,local_time,voter_id,
+          location,local_time,voter_id,ip_address,
           dynamodb){
 //See if the option stats are available, if so, add the vote to that list, else add option stat for that option
   // increase total no of votes in option
@@ -163,6 +163,7 @@ function send_poll(err, result){
               "voted_option":{"N":vote+""},
               "time_taken":{"N":time_taken+""},
               "location":{"S":location},
+              "ip_address":{"S":ip_address},
               "local_time":{"N":local_time+""},
               "voter":{"S":voter_id}
             }
@@ -184,6 +185,7 @@ function handle_aftervote(err, result) {
 // in res write no of votes from  both options as json, so that FE can display both numbers on images
 // res.write();
 
+// updating poll values, i.e total vote count, each option vote count.
 function handle_vote(postID,vote,vote_id){
 //function handle_vote(postID,vote,vote_id,res){
   
@@ -284,14 +286,21 @@ function handle_postDataStats(err,data){
 }
 
 
+function get_heatmapdata(req,res,dynamodb){
+
+
+}
+
 //to get a signed url to load images from s3
 function get_s3Url(req,res,s3){
-  var s3 = new AWS.S3();
+ 
   var params = {Bucket: s3_bucket, Key: req.body.image_ref, Expires: 60};
   var url = s3.getSignedUrl('getObject', params, function (err, url) {
-    if (url) console.log("The URL is", url);
-    var tmpUrl = {"url":url};
-    res.send(JSON.stringify(tmpUrl));
+    if (url){ 
+      //console.log("The URL is", url);
+      var tmpUrl = {"url":url};
+      res.send(JSON.stringify(tmpUrl));
+    }
   });
 }
 //function upload_image(req,s3){

@@ -284,8 +284,12 @@ app.get('/settings', function(req, res) {
 	app.post('/vote', function(req, res) {
 		lib_api.vote(req.body.poll_id,req.body.option,req.body.time_taken,
 					req.body.location,req.body.local_time,
-					req.body.user_id,
+					req.body.user_id,req.headers['X-Forwarded-For'],
 					dynamodb,res);
+	});
+	
+	app.get('/test', function(req,res){
+	console.log(req.headers['X-Forwarded-For']);
 	});
 	
 	app.get('*', function(req, res) { res.render('404', { title: 'Page Not Found'}); });
