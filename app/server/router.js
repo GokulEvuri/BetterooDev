@@ -245,11 +245,11 @@ app.get('/settings', function(req, res) {
 	});
 
 	app.post('/get_s3Url',function(req,res){
-		lib_api.get_s3Url(req,res);
+		lib_api.get_s3Url(req,res,S3);
 	});
 
 	app.get('/get_s3Url',function(req,res){
-		lib_api.get_s3Url(req,res);
+		lib_api.get_s3Url(req,res,S3);
 	});
 
 	// To serve create_poll page

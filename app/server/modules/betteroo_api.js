@@ -285,7 +285,8 @@ function handle_postDataStats(err,data){
 
 
 //to get a signed url to load images from s3
-function get_s3Url(req,res){
+function get_s3Url(req,res,s3){
+  var s3 = new AWS.S3();
   var params = {Bucket: s3_bucket, Key: req.body.image_ref, Expires: 60};
   var url = s3.getSignedUrl('getObject', params, function (err, url) {
     if (url) console.log("The URL is", url);
