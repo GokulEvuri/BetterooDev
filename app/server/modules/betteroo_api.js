@@ -176,9 +176,9 @@ function handle_aftervote(err, result) {
     if(err) {console.log(err,err.stack);}
       else  
       {
-        vote_id_gen = vote_id_gen + 1;
 //        handle_vote(postID,vote,vote_id,res);
-          handle_vote(postID,vote,vote_id);
+        handle_vote(postID,vote,vote_id);
+        vote_id_gen = vote_id_gen + 1;
         //Testing
         //console.log(result);
       }
@@ -290,6 +290,63 @@ function handle_postDataStats(err,data){
 
 //function get_heatmapdata(req,res,dynamodb){
 function get_heatmapdata(dynamodb){
+{
+    "AttributesToGet": [],
+    "ConditionalOperator": "string",
+    "IndexName": "string",
+    "KeyConditions": 
+        {
+            "string" :
+                {
+                    "AttributeValueList": [
+                        {
+                            "B": "blob",
+                            "BS": [
+                                "blob"
+                            ],
+                            "N": "string",
+                            "NS": [
+                                "string"
+                            ],
+                            "S": "string",
+                            "SS": [
+                                "string"
+                            ]
+                        }
+                    ],
+                    "ComparisonOperator": "string"
+                }
+        },
+    "QueryFilter": 
+        {
+            "string" :
+                {
+                    "AttributeValueList": [
+                        {
+                            "B": "blob",
+                            "BS": [
+                                "blob"
+                            ],
+                            "N": "string",
+                            "NS": [
+                                "string"
+                            ],
+                            "S": "string",
+                            "SS": [
+                                "string"
+                            ]
+                        }
+                    ],
+                    "ComparisonOperator": "string"
+                }
+        },
+    "ReturnConsumedCapacity": "string",
+    "ScanIndexForward": "boolean",
+    "Select": "string",
+    "TableName": "votes"
+}
+
+
     dynamodb.client.scan({
         TableName : "votes",
         Limit : 50
@@ -320,8 +377,18 @@ function get_s3Url(req,res,s3){
     }
   });
 }
-//function upload_image(req,s3){
-//}
+
+//temperory link to upload the image
+function upload_image(req,res,s3){
+var params = {Bucket: s3_bucket, Key: req.body.image_ref, Expires:480};
+var url = s3.getSignedUrl('putObject', params, function (err, url) {
+  if (url){ 
+      //console.log("The URL is", url);
+      var tmpUrl = {"url":url};
+      res.send(JSON.stringify(tmpUrl));
+    }
+  });
+}
 
 //**** LOW-LEVEL FUNCTIONS ****//
 
@@ -445,3 +512,4 @@ exports.get_poll = get_poll;
 exports.vote = vote;
 exports.get_imageref_id = get_imageref_id;
 exports.get_s3Url = get_s3Url;
+exports.upload_image = upload_image;
