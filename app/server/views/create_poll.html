@@ -1,75 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="../css/style_cp.css"/>
-
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-
-
-    <title>Create New Poll </title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<title>Create New Poll </title>
 </head>
-<body>
-    <div class="pollcreator">
-        <script>
-            $(document).ready(function() {
-                $("#js-create-button").click(function(event) {
+<body >
 
-                    var question = $("#caption-text").val();
-                    var option1 = $("#choice1-text").val();
-                    var option2 = $("#choice2-text").val();
-                    var temp_data = { "question": question, "Option1": option1, "Option2": option2, "image1_ref": "s3imgbuk01", "image2_ref": "s3imgbuk01" }; 
+<div class="stickyfoot">
+ <script src="/app/public/js/features/crearepoll.js"></script>
+<script src="js/jquery-2.0.3.min.js"></script>
+<div class="pollcreator">
 
-                    $.ajax({
-                        type: "POST",
-                        url: "http://betteroo.com:8080/create_poll",
-                        dataType: 'json',
-                        contentType: "application/json; charset=utf-8",
-                        data: JSON.stringify(temp_data),
-                        error: function(XMLHttpRequest, textStatus, errorThrown) {
-                            //alert(textStatus);
-                            alert(errorThrown);
-                        },
-                        success: function(result) {
-                            alert("success");
-                            alert(result);
-                        }
-                    });
-                    return false;
-                });
-            });
-        </script>
-
-        <div class="pollcreatebox">
-            <fieldset class="pollcaption">
-                <textarea name="caption" id="caption-text" class="js-form-text" autocorrect="on"
-                    autocapitalize="words" rows="1" placeholder="Add a Question..."></textarea>
-            </fieldset>
-            <fieldset class="polllabels">
-                <div class="polllabel">
-                    <p>
-                        <textarea name="choice1" id="choice1-text" class="js-form-text" autocorrect="on"
-                            autocapitalize="words" rows="1" placeholder="Add Choice"></textarea>
-                    </p>
-                </div>
-                <label>
-                    Or</label>
-                <div class="polllabel secondlabel">
-                    <p>
-                        <textarea name="choice2" id="choice2-text" class="js-form-text" autocorrect="on"
-                            autocapitalize="words" rows="1" placeholder="Add Choice"></textarea>
-                    </p>
-                </div>
-            </fieldset>
-            <div>
-                <img width="50%" src="images/Modi.jpg" alt="modi" height="200px" />
-                <img width="50%" src="images/Obama.jpg" alt="obama" height="200px" style="float: left" />
-               
-            </div>
-             <input class="pollbut" id="js-create-button" type="submit" value="Create Poll" />
-            
-        </div>
+    <div class="createtip"><p><span>Tip: </span>Scroll to Zoom</p></div>
+    <div class="createtip createtipleft"><p><span>Tip: </span>Double Click to Fit</p></div>
+    
+    <div id="js-error-indicator" class="formerror singlerror" style="display: none;">
+      <a class="errorbox" href="#" onClick="$('#js-error-indicator').hide(); return false;">
+      <p id="error-msg"></p>
+    <b class="border-notch notch"></b>
+    <b class="notch"></b>
+    </a>
     </div>
+
+    <form class="pollcreatebox" id="poll-form" action="/">
+     
+      <fieldset class="pollcaption">
+      <textarea name="caption" id="js-caption-text" class="js-form-text" autocorrect="on" autocapitalize="words" rows=1 placeholder="Add a Question..."></textarea>
+      </fieldset>
+      
+      <fieldset class="polllabels">
+      <div class="polllabel"><p>
+      <textarea name="choice1" id="js-choice1-text" class="js-form-text" autocorrect="on" autocapitalize="words" rows=1 placeholder="Add Choice"></textarea>
+      </p></div>
+      <label>Or</label>
+      <div class="polllabel secondlabel"><p>
+      <textarea name="choice2" id="js-choice2-text" class="js-form-text" autocorrect="on" autocapitalize="words" rows=1 placeholder="Add Choice"></textarea>
+      </p></div>
+      </fieldset>
+      
+      <ul class="createarea" id="js-image-uploads-container">
+        <li class="js-image-upload-base">
+          <div class="js-image-loading-indicator loadingimg" style="display: none;"><img src="images/loader.gif" alt="loading"><span>Please wait loading that image...</span></div>
+          <div class="js-image-upload-viewport image-upload-viewport">
+            <img border="0" class="js-selected-image selected-image" />
+            <div class="addimg"><a href="#" class="js-add-image"><p class="uploadcta"></p></a><a href="#" class="js-start-search"><p class="searchcta"></p></a></div>
+            <input type="file" style="display:none;">
+          </div>
+          <a href="#" class="addanother js-add-choice"><span>Add Another</span></a>
+          <a href="#" class="removeimg js-cancel-choice">Cancel</a>
+        </li>        <li class="js-image-upload-base">
+          <div class="js-image-loading-indicator loadingimg" style="display: none;"><img src="images/loader.gif" alt="loading"><span>Please wait Loading that image...</span></div>
+          <div class="js-image-upload-viewport image-upload-viewport">
+            <img border="0" class="js-selected-image selected-image" />
+            <div class="addimg"><a href="#" class="js-add-image"><p class="uploadcta"></p></a><a href="#" class="js-start-search"><p class="searchcta"></p></a></div>
+            <input type="file" style="display:none;">
+          </div>
+          <a href="#" class="addanother js-add-choice"><span>Add Another</span></a>
+          <a href="#" class="removeimg js-cancel-choice">Cancel</a>
+        </li>      </ul>
+    <div class="js-image-divider"></div>
+
+      <input class="pollbut" id="js-create-button" type="submit" value="Create Poll"  />
+    </form>
+     
+    <div id="js-image-search-section" class="imgsearchdiv">
+    <form class="imgsearch">
+        <div class="searchfilt">
+        <input id="js-image-search-text" type="text" placeholder="Search" autofocus class="searchbox">
+        <span class="searchicon"></span>
+        <div class="searchwrap">
+    <input id="js-image-search-filter" type="hidden" value="" />
+        <ul class="searchfilters group">
+            <li>
+              <a class="js-image-search-filter-link" href="#" data-filter="cc">CC</a>
+            </li>
+            <li>
+              <a class="js-image-search-filter-link" href="#" data-filter="site">Site</a>
+            </li>
+            <li class="extralink">
+              <a class="js-image-search-filter-link" href="#" data-filter="amazon">Amazon</a>
+            </li>
+            <li>
+              <a class="active js-image-search-filter-link" href="#">Web</a>
+            </li>
+           </ul>
+        </div>
+        </div>
+        <div class="searchdomain">
+            <input type="text" class="searchbox domainbox" id="js-image-search-domain" name="image-search-domain" value="" placeholder="yoursite.com" />
+        </div>
+          <input id="js-image-search-button" class="primaryaction" type="submit" value="Search" />
+          <a href="#" id="js-image-search-cancel" class="closediv">Cancel</a>
+      </form>
+      <div id="js-image-search-scroll" class="imgsearchresultsdiv">
+        <p id="js-image-search-results-tip" class="searchtip"><em>Tip:</em> use CC (Creative Commons) search for images you can use for commercial purposes.</p>
+        <ul id="js-image-search-results-list" class="imgsearchresults group">
+        </ul>
+        <div id="js-image-search-no-results" class="searchnoresults"><span class="noresultsimg">No Results</span>
+        <p>Sorry, no images found and boy did I look! <em>Try another search.</em></div>
+        <div id="js-image-search-pull-up-text" class="scrollmore" style="display:none"><p>scroll for more</p><span class="scrollicon"></span></div>
+      </div>
+      </div>
+    </div>
+
+    
+    <script language="" src="/app/public/js/features/poll-create.js"></script>
+    <script>
+      window.errorMessages = {
+        imageType: "Sorry, we don't recognize that image.  Try a PNG, JPEG, or GIF image.",
+        imageSize: "Whoa that image is big! Try a smaller one please.",
+        browser: "Sadly we can't make polls with this browser.",
+        imageUpload: "Uh Oh we can't upload these images. Try again?",
+        imageProcess: "Sorry, we had a problem using this image. Try again?",
+        unknown: "Whoops. We can't save this poll. Try again?",
+        questionMissing: "Please add a question to your poll.",
+        optionMissing: "Please add some choices to your poll.",
+        imageMissing: "Please add an image for your poll.",
+        notAnImage: "Sorry but if you dragged an image from a Web browser, try saving then uploading it instead.",
+        imageLoadFailure: "Sorry, but we couldn't load that image."
+      }
+
+      $(document).ready(function() {
+        var pollCreator = new PollCreator();
+      });
+    </script>
+    
+</div>
+
+</div>
+
 </body>
 </html>
