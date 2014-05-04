@@ -66,11 +66,12 @@ module.exports = function(app) {
 	// if user is not logged-in redirect back to login page //
 	        res.redirect('/');
 	    }   else{
-			res.render('home', {
-				title : 'Control Panel',
-				countries : CT,
-				udata : req.session.user
-			});
+//			res.render('home', {
+//				title : 'Control Panel',
+//				countries : CT,
+//				udata : req.session.user
+//			});
+		res.sendfile("./app/public/html_views/home.html");
 	    }
 	});
 	
@@ -309,4 +310,4 @@ app.get('/settings', function(req, res) {
 
 	app.get('*', function(req, res) { res.render('404', { title: 'Page Not Found'}); });
 
-};
+};	
