@@ -439,13 +439,14 @@ var url = s3.getSignedUrl('putObject', params, function (err, url) {
 //}
 
 
-function test12(poll_id,dynamodb){
+//function test12(poll_id,dynamodb){
+function test12(dynamodb){
   var parms =    {
       "TableName" :"votes",
       //"Limit"     : 2,
       "ScanFilter":{
       "poll_id"  :{
-          "AttributeValueList":[{"S":poll_id}],
+          "AttributeValueList":[{"N":'0'}],
           "ComparisonOperator":"EQ"
         }
       },
@@ -465,7 +466,7 @@ function test(){
 // Creating object for dynamoDB
 var dynamodb = new AWS.DynamoDB();
 //get_heatmapdata(dynamodb);
-test12("0",dynamodb);
+test12(dynamodb);
 //var S3 = new AWS.S3();
 //  create_poll("Who you know?","Osama","Obama",dynamodb);
 /*var params = {
