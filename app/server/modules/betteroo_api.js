@@ -301,7 +301,8 @@ function get_heatmapdata(dynamodb){
           {
             "AttributeValueList" : [
               {
-                "N" : "1"
+                "N" : "1",
+                "N":"2"
               }
             ],
             "ComparisonOperator" : "EQ"
