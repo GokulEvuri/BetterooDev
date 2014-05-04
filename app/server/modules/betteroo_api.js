@@ -326,7 +326,7 @@ function get_heatmapdata(dynamodb){
             "ComparisonOperator" : "EQ"
           }
       }
-  }
+  };
 
   dynamodb.query(params, function(err, data) {
     if (err) {
