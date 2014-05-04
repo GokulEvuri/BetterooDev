@@ -441,22 +441,23 @@ var url = s3.getSignedUrl('putObject', params, function (err, url) {
 
 //function test12(poll_id,dynamodb){
 function test12(dynamodb){
-  var parms =    {
-      "TableName" :"votes",
-      //"Limit"     : 2,
-      "ScanFilter":{
-         "voted_option"  :{
-            "AttributeValueList":[{"N":"0"}],
-            "ComparisonOperator":"EQ"
-          }
-        },
-//      "AttributesToGet":["location","voted_option"]
-  };
-//9963855558
-  dynamodb.scan(parms, 
-      function(result) {
-          console.log(result);
-     });
+dynamodb.client.batchGetItem(
+{"RequestItems":{
+     "votes":{
+           "Keys":[
+               {"HashKeyElement"  : {"N":"0"}},
+               {"HashKeyElement"  : {"N":"1"}}
+           ]
+       }
+    }
+}, function(err, result){ 
+    if (err) {
+      console.log(err);
+      } 
+    else {
+      console.log(JSON.stringify(data))
+      }
+  });
 }
 
 //Testing functions
