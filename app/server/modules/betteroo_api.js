@@ -448,7 +448,9 @@ dynamodb.client.batchGetItem(
                {"vote_id"  : {"N":"0"}},
                {"vote_id"  : {"N":"1"}}
            ]
-       }
+       },
+      "AttributesToGet":[ "location"
+    ]
     }
 }, function(err, result){ 
     if (err) {
