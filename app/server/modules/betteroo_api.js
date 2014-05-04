@@ -455,7 +455,7 @@ dynamodb.client.batchGetItem(
       console.log(err);
       } 
     else {
-      console.log(JSON.stringify(data))
+      console.log(JSON.stringify(result))
       }
   });
 }
