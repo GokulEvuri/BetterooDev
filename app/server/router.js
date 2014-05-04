@@ -244,35 +244,42 @@ app.get('/settings', function(req, res) {
 			lib_api.get_poll(req.body.poll_id,dynamodb,res);
 	});
 
-	app.post('/get_s3Url',function(req,res){
+	app.post('/get_s3UrlDL',function(req,res){
 		lib_api.get_s3Url(req,res,S3);
 	});
 
-	app.get('/get_s3UrlDL',function(req,res){
+/*	app.get('/get_s3UrlDL',function(req,res){
 		lib_api.get_s3Url(req,res,S3);
 	});
+*/
 
-	app.get('/get_s3UrlUL',function(req,res){
+	app.post('/get_s3UrlUL',function(req,res){
+		if(req.session.user== null){
+			res.redirect('/');
+		}
+		else{
 		lib_api.upload_image(req,res,S3);
+		}
+
 	});
 
 	// To serve create_poll page
 	app.get('/create_poll', function(req, res) {
-		//if (req.session.user == null){
+		if (req.session.user == null){
 	// if user is not logged-in redirect back to login page //
-	//        res.redirect('/');
-	  //  }   else{
+		      res.redirect('/');
+	    }   else{
 			res.sendfile("./app/public/html_views/create_poll.html");
-	  //  }
+	    }
 	    
 	});
 
 	// To serve the content "Endpoint create poll"
 	app.post('/create_poll', function(req, res) {
-		//if (req.session.user == null){
+		if (req.session.user == null){
 	// if user is not logged-in redirect back to login page //
-	    //    res.redirect('/');
-	    //}   else{
+	        res.redirect('/');
+	   }   else{
 //	    	console.log("Got request");
 //			console.log(req.body);
 			lib_api.create_poll(req.body.question,
@@ -280,7 +287,7 @@ app.get('/settings', function(req, res) {
 						req.body.image1_ref,req.body.i1_width,req.body.i1_height,req.body.i1_left,req.body.i1_right,req.body.i1_bottom,req.body.i1_up,
 						req.body.image2_ref,req.body.i2_width,req.body.i2_height,req.body.i2_left,req.body.i2_right,req.body.i2_bottom,req.body.i2_up,
 						dynamodb,res);
-	    //}
+	    }
 	
 	});
 
