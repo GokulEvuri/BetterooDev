@@ -445,11 +445,11 @@ function test12(dynamodb){
       "TableName" :"votes",
       //"Limit"     : 2,
       "ScanFilter":{
-      "poll_id"  :{
-          "AttributeValueList":[{"N":0}],
-          "ComparisonOperator":"EQ"
-        }
-      },
+         "poll_id"  :{
+            "AttributeValueList":[{"N":"0"}],
+            "ComparisonOperator":"EQ"
+          }
+        },
       "AttributesToGet":["location","voted_option"]
   };
 //9963855558
