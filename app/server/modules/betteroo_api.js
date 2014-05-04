@@ -128,7 +128,6 @@ function get_poll(poll_id,dynamodb,res){
   }
   dynamodb.getItem(item,send_poll);
 
-
 function send_poll(err, result){
   var sData = {
             "question": result.Item.question,
@@ -438,10 +437,25 @@ var url = s3.getSignedUrl('putObject', params, function (err, url) {
   //create send buffer and depending up on country_view
 //}
 
+var generated_batchkv=[];
+function generate_batchgetkv(keyset){
+    for (var i=0;i<keyset.length;i++)
+      { 
+        generated_batchkv[i] = {"vote_id":{"N":keyset[i]}};
+      }
+}
 
-//function test12(poll_id,dynamodb){
-function test12(dynamodb){
-dynamodb.client.batchGetItem(
+// don't forget to clear out generated_batchkv
+// function test12(poll_id,dynamodb){
+function test12(poll_id,dynamodb){
+
+var 
+
+
+
+
+
+dynamodb.batchGetItem(
 {"RequestItems":{
      
      "votes":{
@@ -452,7 +466,6 @@ dynamodb.client.batchGetItem(
        }
 
     },
-  "AttributesToGet":[ "location"],
 }, function(err, result){ 
     if (err) {
       console.log(err);
@@ -470,7 +483,7 @@ function test(){
 // Creating object for dynamoDB
 var dynamodb = new AWS.DynamoDB();
 //get_heatmapdata(dynamodb);
-test12(dynamodb);
+//test12(dynamodb);
 //var S3 = new AWS.S3();
 //  create_poll("Who you know?","Osama","Obama",dynamodb);
 /*var params = {
@@ -511,6 +524,7 @@ test12(dynamodb);
           "Sweden","1234","234",
           dynamodb);*/
 //get_poll('0',dynamodb);
+testing_graphs(dynamodb);
 }
 
 test();
@@ -545,6 +559,34 @@ function cpdsa(question,option1,option2,dynamodb){
 //res.end();
 };
 
+
+
+//function testing_graphs(res,req,dynamodb){
+function testing_graphs(dynamodb){
+
+dynamodb.scan(
+    {"TableName"    :"polls",
+        "AttributesToGet":["poll_id", "question"]
+    }
+, function(result) {
+        console.log(result);
+    });
+
+/*
+  var item = {
+    "Key": {
+      "user_name": {"S":username}
+    },
+    "TableName": "polls",
+    "AttributesToGet":[ "password"
+    ]
+  };
+
+  dynamodb.getItem(item,handle_login);
+*/
+
+
+}
 
 //test();
 
