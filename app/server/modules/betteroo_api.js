@@ -450,7 +450,7 @@ function test12(dynamodb){
             "ComparisonOperator":"EQ"
           }
         },
-      "AttributesToGet":["location","voted_option"]
+//      "AttributesToGet":["location","voted_option"]
   };
 //9963855558
   dynamodb.scan(parms, 
