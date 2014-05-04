@@ -288,80 +288,105 @@ function handle_postDataStats(err,data){
 }
 
 
-//function get_heatmapdata(req,res,dynamodb){
+
+
+
+//function myFunction(req, res, next) {
 function get_heatmapdata(dynamodb){
-{
-    "AttributesToGet": [],
-    "ConditionalOperator": "string",
-    "IndexName": "string",
-    "KeyConditions": 
-        {
-            "string" :
-                {
-                    "AttributeValueList": [
-                        {
-                            "B": "blob",
-                            "BS": [
-                                "blob"
-                            ],
-                            "N": "string",
-                            "NS": [
-                                "string"
-                            ],
-                            "S": "string",
-                            "SS": [
-                                "string"
-                            ]
-                        }
-                    ],
-                    "ComparisonOperator": "string"
-                }
-        },
-    "QueryFilter": 
-        {
-            "string" :
-                {
-                    "AttributeValueList": [
-                        {
-                            "B": "blob",
-                            "BS": [
-                                "blob"
-                            ],
-                            "N": "string",
-                            "NS": [
-                                "string"
-                            ],
-                            "S": "string",
-                            "SS": [
-                                "string"
-                            ]
-                        }
-                    ],
-                    "ComparisonOperator": "string"
-                }
-        },
-    "ReturnConsumedCapacity": "string",
-    "ScanIndexForward": "boolean",
-    "Select": "string",
-    "TableName": "votes"
-}
+  var params = {
+    TableName : 'votes',
+    KeyConditions : 
+      {
+        "vote_id" : 
+          {
+            "AttributeValueList" : [
+              {
+                "N" : "1"
+              }
+            ],
+            "ComparisonOperator" : "EQ"
+          }
+      }
+  }
+
+  db.query(params, function(err, data) {
+    if (err) {
+      console.log(err);
+      } 
+    else {
+
+      console.log(JSON.stringify(data))
+
+      }
+  });
+
+ }
 
 
-    dynamodb.client.scan({
-        TableName : "votes",
-        Limit : 50
-    }, function(err, data) {
-        if (err) { console.log(err); return; }
-        console.log(data.id);
- 
-        for (var ii in data.Items) {
-            ii = data.Items[ii];
-            console.log(ii.id);
-            console.log(ii.taken);
-            console.log(ii.thumb);
-            console.log(ii.full);
-        }
-    });
+
+
+
+
+//function get_heatmapdata(req,res,dynamodb){
+function cget_heatmapdata(dynamodb){
+          
+var queryString = {
+              "AttributesToGet": [],
+              "ConditionalOperator": "string",
+              "IndexName": "string",
+              "KeyConditions": 
+                  {
+                      "string" :
+                          {
+                              "AttributeValueList": [
+                                  {
+                                      "B": "blob",
+                                      "BS": [
+                                          "blob"
+                                      ],
+                                      "N": "string",
+                                      "NS": [
+                                          "string"
+                                      ],
+                                      "S": "string",
+                                      "SS": [
+                                          "string"
+                                      ]
+                                  }
+                              ],
+                              "ComparisonOperator": "string"
+                          }
+                  },
+              "QueryFilter": 
+                  {
+                      "string" :
+                          {
+                              "AttributeValueList": [
+                                  {
+                                      "B": "blob",
+                                      "BS": [
+                                          "blob"
+                                      ],
+                                      "N": "string",
+                                      "NS": [
+                                          "string"
+                                      ],
+                                      "S": "string",
+                                      "SS": [
+                                          "string"
+                                      ]
+                                  }
+                              ],
+                              "ComparisonOperator": "string"
+                          }
+                  },
+              "ReturnConsumedCapacity": "string",
+              "ScanIndexForward": "boolean",
+              "Select": "string",
+              "TableName": "votes"
+          };
+
+
 
 }
 
