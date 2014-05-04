@@ -443,15 +443,16 @@ var url = s3.getSignedUrl('putObject', params, function (err, url) {
 function test12(dynamodb){
 dynamodb.client.batchGetItem(
 {"RequestItems":{
+     
      "votes":{
            "Keys":[
                {"vote_id"  : {"N":"0"}},
                {"vote_id"  : {"N":"1"}}
            ]
-       },
-      "AttributesToGet":[ "location"
-    ]
-    }
+       }
+
+    },
+  "AttributesToGet":[ "location"],
 }, function(err, result){ 
     if (err) {
       console.log(err);
