@@ -465,7 +465,7 @@ function test(){
 // Creating object for dynamoDB
 var dynamodb = new AWS.DynamoDB();
 //get_heatmapdata(dynamodb);
-test12(0,dynamodb);
+test12("0",dynamodb);
 //var S3 = new AWS.S3();
 //  create_poll("Who you know?","Osama","Obama",dynamodb);
 /*var params = {
