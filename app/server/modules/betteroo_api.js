@@ -288,8 +288,26 @@ function handle_postDataStats(err,data){
 }
 
 
-
-
+function test12(poll_id,dynamodb){
+  var parms =    {
+      "TableName" :"votes",
+      //"Limit"     : 2,
+      "ScanFilter":{
+      "poll_id"  :{
+          "AttributeValueList":[{"N":poll_id}],
+          "ComparisonOperator":"EQ"
+        }
+      },
+      "AttributesToGet":["location","voted_option"]
+  };
+//9963855558
+  dynamodb.scan(params, 
+      function(result) {
+          result.on('data', function(chunk){
+          console.log(""+chunk);
+       });
+     });
+}
 
 //function myFunction(req, res, next) {
 function get_heatmapdata(dynamodb){
@@ -302,9 +320,6 @@ function get_heatmapdata(dynamodb){
             "AttributeValueList" : [
               {
                 "N" : "1",
-              };
-             {
-                "N" : "2",
               }
               
             ],
@@ -453,8 +468,8 @@ AWS.config.loadFromPath('./config.json');
 function test(){
 // Creating object for dynamoDB
 var dynamodb = new AWS.DynamoDB();
-get_heatmapdata(dynamodb);
-
+//get_heatmapdata(dynamodb);
+test12("0",dynamodb);
 //var S3 = new AWS.S3();
 //  create_poll("Who you know?","Osama","Obama",dynamodb);
 /*var params = {
