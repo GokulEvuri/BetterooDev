@@ -302,7 +302,7 @@ function get_heatmapdata(dynamodb){
             "AttributeValueList" : [
               {
                 "N" : "1",
-              },
+              };
              {
                 "N" : "2",
               }
