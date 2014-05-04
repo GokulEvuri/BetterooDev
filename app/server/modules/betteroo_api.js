@@ -445,8 +445,8 @@ dynamodb.client.batchGetItem(
 {"RequestItems":{
      "votes":{
            "Keys":[
-               {"poll_id"  : {"N":"0"}},
-               {"post_id"  : {"N":"1"}}
+               {"vote_id"  : {"N":"0"}},
+               {"vote_id"  : {"N":"1"}}
            ]
        }
     }
