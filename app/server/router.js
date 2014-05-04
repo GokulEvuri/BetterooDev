@@ -71,7 +71,7 @@ module.exports = function(app) {
 //				countries : CT,
 //				udata : req.session.user
 //			});
-		res.sendfile("./app/public/html_views/home.html");
+		res.sendfile("./app/server/views/home.html");
 	    }
 	});
 	
