@@ -303,9 +303,7 @@ function test12(poll_id,dynamodb){
 //9963855558
   dynamodb.scan(parms, 
       function(result) {
-          result.on('data', function(chunk){
-          console.log(""+chunk);
-       });
+          console.log(result);
      });
 }
 
