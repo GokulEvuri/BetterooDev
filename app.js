@@ -11,6 +11,9 @@ var allowCrossDomain = function(req, res, next) {
     next();
 }
 
+
+//hijh
+
 app.configure(function(){
 	app.set('port', 8080);
 	app.set('views', __dirname + '/app/server/views');
