@@ -567,7 +567,11 @@ function testing_graphs(dynamodb){
 
   dynamodb.scan(
       {"TableName"    :"polls",
-         "AttributesToGet":["poll_id", "question"]
+        "Limit": 2,
+        "ScanFilter":{
+            "poll_id"  :{"AttributeValueList":[{"N":"123445555"}],"ComparisonOperator":"NE"}
+        },
+        "AttributesToGet":["poll_id", "question"]
      }
     , function(result) {
          console.log(result);
