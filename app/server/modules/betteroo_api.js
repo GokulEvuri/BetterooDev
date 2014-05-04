@@ -482,6 +482,7 @@ AWS.config.loadFromPath('./config.json');
 function test(){
 // Creating object for dynamoDB
 var dynamodb = new AWS.DynamoDB();
+testing_graphs(dynamodb);
 //get_heatmapdata(dynamodb);
 //test12(dynamodb);
 //var S3 = new AWS.S3();
@@ -524,7 +525,7 @@ var dynamodb = new AWS.DynamoDB();
           "Sweden","1234","234",
           dynamodb);*/
 //get_poll('0',dynamodb);
-testing_graphs(dynamodb);
+
 }
 
 test();
@@ -564,13 +565,13 @@ function cpdsa(question,option1,option2,dynamodb){
 //function testing_graphs(res,req,dynamodb){
 function testing_graphs(dynamodb){
 
-dynamodb.scan(
-    {"TableName"    :"polls",
-        "AttributesToGet":["poll_id", "question"]
-    }
-, function(result) {
-        console.log(result);
-    });
+  dynamodb.scan(
+      {"TableName"    :"polls",
+         "AttributesToGet":["poll_id", "question"]
+     }
+    , function(result) {
+         console.log(result);
+     });
 
 /*
   var item = {
