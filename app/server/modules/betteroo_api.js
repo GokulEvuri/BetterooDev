@@ -561,7 +561,6 @@ function cpdsa(question,option1,option2,dynamodb){
 };
 
 
-    <link rel="stylesheet" type="text/css" href="../css/style_cp.css"/>
 //function testing_graphs(res,req,dynamodb){
 function testing_graphs(dynamodb){
 
