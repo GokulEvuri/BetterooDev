@@ -445,7 +445,7 @@ function test12(poll_id,dynamodb){
       //"Limit"     : 2,
       "ScanFilter":{
       "poll_id"  :{
-          "AttributeValueList":[{"N":poll_id}],
+          "AttributeValueList":[{"S":poll_id}],
           "ComparisonOperator":"EQ"
         }
       },
