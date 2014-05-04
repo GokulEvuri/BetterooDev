@@ -449,7 +449,7 @@ function generate_batchgetkv(keyset){
 // function test12(poll_id,dynamodb){
 function test12(poll_id,dynamodb){
 
-var 
+
 
 
 
